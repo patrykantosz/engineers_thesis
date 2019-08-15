@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EngieersThesis</string>
+    <string name="login">Login</string>
+    <string name="password">Hasło</string>
+    <string name="log_in">Zaloguj się</string>
+    <string name="register_account">Załóż konto</string>
+    <string name="repeat_password">Powtórz hasło</string>
 </resources>
