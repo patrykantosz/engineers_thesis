@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/loginEditText"
+        android:id="@+id/loginEditTextLoginActivity"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_centerInParent="true"
@@ -13,20 +13,20 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/passwordEditTextLoginActivity"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_below="@id/loginEditText"
+        android:layout_below="@id/loginEditTextLoginActivity"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:hint="@string/password"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/logInButton"
+        android:id="@+id/signInButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passwordEditText"
+        android:layout_below="@id/passwordEditTextLoginActivity"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="@drawable/oval_button"
