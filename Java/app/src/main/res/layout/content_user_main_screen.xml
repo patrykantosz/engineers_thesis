@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".UserMainScreenActivity"
+    tools:showIn="@layout/app_bar_user_main_screen">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/breakfastTableRow"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:text="@string/breakfast"
+                android:layout_gravity="start"
+                android:id="@+id/breakfastTextView"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"/>
+
+            <Button
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end"
+                android:background="@drawable/add_icon"/>
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/brunchTableRow"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:text="@string/brunch"
+                android:layout_gravity="start"
+                android:id="@+id/brunchTextView"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"/>
+
+            <Button
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end"
+                android:background="@drawable/add_icon"/>
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dinnerTableRow"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:text="@string/dinner"
+                android:layout_gravity="start"
+                android:id="@+id/dinnerTextView"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"/>
+
+            <Button
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end"
+                android:background="@drawable/add_icon"/>
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/supperTableRow"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:text="@string/supper"
+                android:layout_gravity="start"
+                android:id="@+id/supperTextView"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"/>
+
+            <Button
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end"
+                android:background="@drawable/add_icon"/>
+        </GridLayout>
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

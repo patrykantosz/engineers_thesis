@@ -1,5 +1,6 @@
 package com.example.engieersthesis;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = getSharedPreferences(Consts.TOKEN_FILE, MODE_PRIVATE);
                 SharedPreferencesSaver.saveTokenToSharedPreferences(registerAndGetToken(), sharedPreferences);
+                Intent userMainScreenIntent = new Intent(RegisterActivity.this, UserMainScreenActivity.class);
+                startActivity(userMainScreenIntent);
             }
         });
     }

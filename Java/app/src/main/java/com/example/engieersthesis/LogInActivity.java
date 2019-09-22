@@ -1,5 +1,6 @@
 package com.example.engieersthesis;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,8 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = getSharedPreferences(Consts.TOKEN_FILE, MODE_PRIVATE);
                 SharedPreferencesSaver.saveTokenToSharedPreferences(loginAndGetToken(), sharedPreferences);
+                Intent userMainScreenIntent = new Intent(LogInActivity.this, UserMainScreenActivity.class);
+                startActivity(userMainScreenIntent);
             }
         });
     }
