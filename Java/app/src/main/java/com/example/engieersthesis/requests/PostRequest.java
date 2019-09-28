@@ -21,6 +21,7 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
     private String jsonRequest;
     private String token;
     private PostRequestType requestType;
+    private boolean finish;
 
     public void setRequestType(PostRequestType requestType) {
         this.requestType = requestType;
@@ -30,9 +31,13 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
         this.jsonRequest = jsonRequest;
     }
 
+    public String getToken() { return this.token; }
+
+    public boolean isFinished() { return  finish; }
+
     @Override
     protected void onPreExecute() {
-
+        finish = false;
     }
 
     @Override
@@ -68,6 +73,12 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        try {
+            new Thread().sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        finish = true;
         token = result;
     }
 
