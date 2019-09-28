@@ -12,7 +12,7 @@ public class JSONBuilder extends JSONObject {
         }
     }
 
-    public String getJson() {
-        return this.toString();
+    public JSONBuilder getJson() {
+        return this;
     }
 }
