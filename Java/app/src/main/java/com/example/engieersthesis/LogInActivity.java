@@ -24,11 +24,12 @@ import org.json.JSONObject;
 
 public class LogInActivity extends AppCompatActivity {
     IResult mResultCallback = null;
-    com.example.engieersthesis.requests.VolleyService VolleyService;
+    private VolleyService volleyService;
     private Button logInButton;
     private EditText loginEditText;
     private EditText passwordEditText;
     private ProgressBar progressBar;
+
 
     @Override
     protected void onResume() {
@@ -52,7 +53,7 @@ public class LogInActivity extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
 
         initVolleyCallback();
-        VolleyService = new VolleyService(mResultCallback, this);
+        volleyService = new VolleyService(mResultCallback, this);
 
 
         logInButton.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +80,7 @@ public class LogInActivity extends AppCompatActivity {
         jsonBuilder.addNextLine("password", password);
 
         progressBar.setVisibility(View.VISIBLE);
-        VolleyService.postDataVolleyRequest("POSTCALL", Consts.API_LOGIN_ENDPOINT, jsonBuilder.getJson());
+        volleyService.postDataVolleyRequest("POSTCALL", Consts.API_LOGIN_ENDPOINT, jsonBuilder.getJson());
     }
 
     void initVolleyCallback() {

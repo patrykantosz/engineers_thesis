@@ -31,7 +31,8 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="end"
-                android:background="@drawable/add_icon"/>
+                android:background="@drawable/add_icon"
+                android:id="@+id/breakfastAddButton"/>
         </GridLayout>
 
         <GridLayout
@@ -53,7 +54,8 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="end"
-                android:background="@drawable/add_icon"/>
+                android:background="@drawable/add_icon"
+                android:id="@+id/brunchAddButton"/>
         </GridLayout>
 
         <GridLayout
@@ -75,7 +77,8 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="end"
-                android:background="@drawable/add_icon"/>
+                android:background="@drawable/add_icon"
+                android:id="@+id/dinnerAddButton"/>
         </GridLayout>
 
         <GridLayout
@@ -97,7 +100,8 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="end"
-                android:background="@drawable/add_icon"/>
+                android:background="@drawable/add_icon"
+                android:id="@+id/supperAddButton"/>
         </GridLayout>
     </TableLayout>
 

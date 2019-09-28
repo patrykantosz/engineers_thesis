@@ -4,6 +4,7 @@
     <string name="password">Hasło</string>
     <string name="log_in">Zaloguj się</string>
     <string name="register_account">Załóż konto</string>
+    <string name="search_product">Wpisz nazwę produktu</string>
     <string name="email">E-mail</string>
     <string name="title_activity_user_main_screen">UserMainScreenActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

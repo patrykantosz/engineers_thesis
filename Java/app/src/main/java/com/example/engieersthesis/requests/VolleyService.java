@@ -18,6 +18,9 @@ public class VolleyService {
 
     private IResult mResultCallback;
     private Context mContext;
+    private RequestQueue queue;
+    private JsonArrayRequest jsonArray;
+    private JsonObjectRequest jsonObj;
 
     public VolleyService(IResult resultCallback, Context context) {
         mResultCallback = resultCallback;
@@ -27,9 +30,9 @@ public class VolleyService {
 
     public void postDataVolleyRequest(final String requestType, String urlToRegisterEndpoint, JSONObject jsonRequest) {
         try {
-            RequestQueue queue = Volley.newRequestQueue(mContext);
+            queue = Volley.newRequestQueue(mContext);
 
-            JsonObjectRequest jsonObj = new JsonObjectRequest(urlToRegisterEndpoint, jsonRequest, new Response.Listener<JSONObject>() {
+            jsonObj = new JsonObjectRequest(urlToRegisterEndpoint, jsonRequest, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     if (mResultCallback != null)
@@ -52,20 +55,14 @@ public class VolleyService {
 
     public void getDataVolleyRequest(final String requestType, String urlToLoginEndpoint) {
         try {
-            RequestQueue queue = Volley.newRequestQueue(mContext);
+            queue = Volley.newRequestQueue(mContext);
 
-            JsonArrayRequest jsonObj = new JsonArrayRequest(Request.Method.GET, urlToLoginEndpoint, null, new Response.Listener<JSONArray>() {
+            jsonArray = new JsonArrayRequest(Request.Method.GET, urlToLoginEndpoint, null, new Response.Listener<JSONArray>() {
 
                 @Override
                 public void onResponse(JSONArray response) {
-                    if (mResultCallback != null) {
-                        try {
-                            new Thread().sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                    if (mResultCallback != null)
                         mResultCallback.notifySuccess(requestType, response);
-                    }
                 }
             }, new Response.ErrorListener() {
 
@@ -75,10 +72,18 @@ public class VolleyService {
                         mResultCallback.notifyError(requestType, error);
                 }
             });
-            queue.add(jsonObj);
+            queue.add(jsonArray);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void cancelArrayRequest() {
+        queue.cancelAll(jsonArray);
+    }
+
+    public void cancelObjectRequest() {
+        queue.cancelAll(jsonObj);
     }
 }

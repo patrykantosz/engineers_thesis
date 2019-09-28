@@ -1,9 +1,11 @@
 package com.example.engieersthesis;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,12 +13,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.engieersthesis.utility.Consts;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 public class UserMainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Button breakfastAddButton;
+    private Button brunchAddButton;
+    private Button dinnerAddButton;
+    private Button supperAddButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,20 @@ public class UserMainScreenActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        breakfastAddButton = findViewById(R.id.breakfastAddButton);
+        brunchAddButton = findViewById(R.id.brunchAddButton);
+        dinnerAddButton = findViewById(R.id.dinnerAddButton);
+        supperAddButton = findViewById(R.id.supperAddButton);
+
+        breakfastAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addFoodProductIntent = new Intent(UserMainScreenActivity.this, AddFoodProductActivity.class);
+                addFoodProductIntent.putExtra("mealName", Consts.BREAKFAST_PL);
+                startActivity(addFoodProductIntent);
+            }
+        });
     }
 
     @Override

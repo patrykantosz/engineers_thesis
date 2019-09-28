@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AddFoodProductActivity"></activity>
         <activity
             android:name=".UserMainScreenActivity"
             android:label="@string/title_activity_user_main_screen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LogInActivity" />
         <activity android:name=".MainActivity">

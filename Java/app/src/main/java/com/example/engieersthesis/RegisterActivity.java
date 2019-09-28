@@ -24,7 +24,7 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
     IResult mResultCallback = null;
-    com.example.engieersthesis.requests.VolleyService VolleyService;
+    private VolleyService volleyService;
     private Button registerButton;
     private EditText loginEditText;
     private EditText emailEditText;
@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
 
         initVolleyCallback();
-        VolleyService = new VolleyService(mResultCallback, this);
+        volleyService = new VolleyService(mResultCallback, this);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
         jsonBuilder.addNextLine("password", password);
 
         progressBar.setVisibility(View.VISIBLE);
-        VolleyService.postDataVolleyRequest("POSTCALL", Consts.API_REGISTER_ENDPOINT, jsonBuilder.getJson());
+        volleyService.postDataVolleyRequest("POSTCALL", Consts.API_REGISTER_ENDPOINT, jsonBuilder.getJson());
     }
 
     void initVolleyCallback() {
