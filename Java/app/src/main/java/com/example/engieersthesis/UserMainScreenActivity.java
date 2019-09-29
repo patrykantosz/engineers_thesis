@@ -53,6 +53,7 @@ public class UserMainScreenActivity extends AppCompatActivity
         dinnerAddButton = findViewById(R.id.dinnerAddButton);
         supperAddButton = findViewById(R.id.supperAddButton);
 
+
         breakfastAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +62,34 @@ public class UserMainScreenActivity extends AppCompatActivity
                 startActivity(addFoodProductIntent);
             }
         });
+
+        brunchAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addFoodProductIntent = new Intent(UserMainScreenActivity.this, AddFoodProductActivity.class);
+                addFoodProductIntent.putExtra("mealName", Consts.BRUNCH_PL);
+                startActivity(addFoodProductIntent);
+            }
+        });
+
+        dinnerAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addFoodProductIntent = new Intent(UserMainScreenActivity.this, AddFoodProductActivity.class);
+                addFoodProductIntent.putExtra("mealName", Consts.DINNER_PL);
+                startActivity(addFoodProductIntent);
+            }
+        });
+
+        supperAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addFoodProductIntent = new Intent(UserMainScreenActivity.this, AddFoodProductActivity.class);
+                addFoodProductIntent.putExtra("mealName", Consts.SUPPER_PL);
+                startActivity(addFoodProductIntent);
+            }
+        });
+
     }
 
     @Override

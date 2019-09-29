@@ -24,4 +24,13 @@
         android:hint="@string/search_product"
         android:id="@+id/foodSearchEditText"/>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodProductsListView"
+        android:layout_below="@+id/foodSearchEditText"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+    </ListView>
+
 </RelativeLayout>
