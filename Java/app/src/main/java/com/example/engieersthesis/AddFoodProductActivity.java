@@ -1,9 +1,12 @@
 package com.example.engieersthesis;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -28,6 +31,7 @@ public class AddFoodProductActivity extends AppCompatActivity {
     private TextView mealNameTextView;
     private EditText foodSearchEditText;
     private VolleyService volleyService;
+    private Button addNewFoodProductButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class AddFoodProductActivity extends AppCompatActivity {
 
         mealNameTextView = findViewById(R.id.mealNameTextView);
         foodSearchEditText = findViewById(R.id.foodSearchEditText);
+        addNewFoodProductButton = findViewById(R.id.addNewFoodProductButton);
 
         mealNameTextView.setText(mealName);
 
@@ -45,7 +50,6 @@ public class AddFoodProductActivity extends AppCompatActivity {
         volleyService = new VolleyService(mResultCallback, this);
 
         foodSearchEditText.addTextChangedListener(new TextWatcher() {
-            boolean isSeraching = false;
 
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -54,18 +58,20 @@ public class AddFoodProductActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 if (charSequence.length() >= 3) {
-                    if (!isSeraching) {
-                        isSeraching = true;
-                        searchProductInDatabase(charSequence.toString());
-                    } else {
-                        volleyService.cancelArrayRequest();
-                        searchProductInDatabase(charSequence.toString());
-                    }
+                    searchProductInDatabase(charSequence.toString());
                 }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        addNewFoodProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addNewFoodProductIntent = new Intent(AddFoodProductActivity.this, AddNewFoodProductActivity.class);
+                startActivity(addNewFoodProductIntent);
             }
         });
     }
