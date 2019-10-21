@@ -39,38 +39,66 @@ public class VolleyService {
         try {
             queue = Volley.newRequestQueue(mContext);
 
-            jsonObj = new JsonObjectRequest(urlToRegisterEndpoint, jsonRequest, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    if (mResultCallback != null)
-                        mResultCallback.notifySuccess(requestType, response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    if (mResultCallback != null)
-                        mResultCallback.notifyError(requestType, error);
-                }
-            }) {
-
-                //This is for Headers If You Needed
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<String, String>();
-                    SharedPreferences sharedPreferences = mContext.getSharedPreferences(Consts.TOKEN_FILE, Context.MODE_PRIVATE);
-                    String token = sharedPreferences.getString(Consts.TOKEN_KEY, "");
-                    Log.d("getHeadersPOST: ", token);
-                    params.put(Consts.CONTENT_TYPE, Consts.CONTENT_TYPE_APPLICATION_JSON_UTF8);
-                    params.put("Authorization", "Token " + token);
-                    return params;
-                }
-            };
-
+            if(urlToRegisterEndpoint.contains(Consts.API_LOGIN_ENDPOINT) ||
+                    urlToRegisterEndpoint.contains(Consts.API_REGISTER_ENDPOINT))
+            {
+                jsonObj = createLoginOrRegisterJsonObjectRequest(requestType, urlToRegisterEndpoint, jsonRequest);
+            } else {
+                jsonObj = createJsonObjectRequestWithAuthToken(requestType, urlToRegisterEndpoint, jsonRequest);
+            }
             queue.add(jsonObj);
-
         } catch (Exception e) {
 
         }
+    }
+
+    private JsonObjectRequest createLoginOrRegisterJsonObjectRequest(final String requestType, String urlToRegisterEndpoint, JSONObject jsonRequest) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(urlToRegisterEndpoint, jsonRequest, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (mResultCallback != null)
+                    mResultCallback.notifySuccess(requestType, response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mResultCallback != null)
+                    mResultCallback.notifyError(requestType, error);
+            }
+        });
+
+        return jsonObjectRequest;
+    }
+
+    private JsonObjectRequest createJsonObjectRequestWithAuthToken(final String requestType, String urlToRegisterEndpoint, JSONObject jsonRequest) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(urlToRegisterEndpoint, jsonRequest, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (mResultCallback != null)
+                    mResultCallback.notifySuccess(requestType, response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mResultCallback != null)
+                    mResultCallback.notifyError(requestType, error);
+            }
+        }) {
+
+            //This is for Headers If You Needed
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                SharedPreferences sharedPreferences = mContext.getSharedPreferences(Consts.TOKEN_FILE, Context.MODE_PRIVATE);
+                String token = sharedPreferences.getString(Consts.TOKEN_KEY, "");
+                Log.d("getHeadersPOST: ", token);
+                params.put(Consts.CONTENT_TYPE, Consts.CONTENT_TYPE_APPLICATION_JSON_UTF8);
+                params.put("Authorization", "Token " + token);
+                return params;
+            }
+        };
+
+        return jsonObjectRequest;
     }
 
     public void getDataVolleyRequest(final String requestType, String urlToLoginEndpoint) {
@@ -140,13 +168,5 @@ public class VolleyService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void cancelArrayRequest() {
-        queue.cancelAll(jsonArray);
-    }
-
-    public void cancelObjectRequest() {
-        queue.cancelAll(jsonObj);
     }
 }
