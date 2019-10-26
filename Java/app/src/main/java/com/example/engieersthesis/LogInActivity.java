@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -123,6 +124,7 @@ public class LogInActivity extends AppCompatActivity {
     private void handleResponseErrors(VolleyError error) {
         if (error instanceof ClientError) {
             progressBar.setVisibility(View.GONE);
+            logInButton.setEnabled(true);
             handleClientError();
         }
     }
@@ -134,5 +136,6 @@ public class LogInActivity extends AppCompatActivity {
         passwordEditText.setEnabled(true);
         loginEditText.setText("");
         passwordEditText.setText("");
+        Toast.makeText(LogInActivity.this, Consts.WRONG_CREDENTIALS_MSG_PL, Toast.LENGTH_SHORT).show();
     }
 }

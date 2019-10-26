@@ -38,5 +38,6 @@ public class Consts {
 
     public static final String ADD_NEW_FOOD_EMPTY_FIELDS_MSG_PL = "Należy wypełnić wszystkie pola";
     public static final String ADD_NEW_FOOD_SUCCES_MSG_PL = "Produkt został dodany";
-    public static final String ADD_NEW_FOOD_FAILURE_MSG_PL = "Produkt nie został dodany. Spróbuj ponownie";
+    public static final String ADD_NEW_FOOD_FAILURE_MSG_PL = "Produkt nie został dodany, spróbuj ponownie";
+    public static final String WRONG_CREDENTIALS_MSG_PL = "Nieprawidłowe dane logowania, spróbuj ponownie";
 }
