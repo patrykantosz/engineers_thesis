@@ -1,11 +1,14 @@
 package com.example.engieersthesis;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,14 +16,25 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.android.volley.ParseError;
+import com.android.volley.VolleyError;
+import com.example.engieersthesis.Interfaces.IResult;
+import com.example.engieersthesis.requests.VolleyService;
 import com.example.engieersthesis.utility.Consts;
+import com.example.engieersthesis.utility.JSONBuilder;
+import com.example.engieersthesis.utility.SharedPreferencesSaver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class UserMainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    IResult mResultCallback = null;
+    private VolleyService volleyService;
     private Button breakfastAddButton;
     private Button brunchAddButton;
     private Button dinnerAddButton;
@@ -48,11 +62,9 @@ public class UserMainScreenActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        breakfastAddButton = findViewById(R.id.breakfastAddButton);
-        brunchAddButton = findViewById(R.id.brunchAddButton);
-        dinnerAddButton = findViewById(R.id.dinnerAddButton);
-        supperAddButton = findViewById(R.id.supperAddButton);
-
+        prepareAllControllers();
+        initVolleyCallback();
+        volleyService = new VolleyService(mResultCallback, this);
 
         breakfastAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +102,41 @@ public class UserMainScreenActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    private void prepareAllControllers() {
+        breakfastAddButton = findViewById(R.id.breakfastAddButton);
+        brunchAddButton = findViewById(R.id.brunchAddButton);
+        dinnerAddButton = findViewById(R.id.dinnerAddButton);
+        supperAddButton = findViewById(R.id.supperAddButton);
+    }
+
+    void initVolleyCallback() {
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONArray response) {
+                Log.d("Response", response.toString());
+
+            }
+
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("ResponseJSONOBJECT", response.toString());
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("Response:", error.toString());
+                //this is hack, goolge volley is trying to parse all
+                //responses, but logout is HTTP 204 No Content, so
+                //volley gets an ParseError, which basically means
+                //that logout is successful
+                if (error instanceof ParseError) {
+                    deleteTokenFromSharedPreferences();
+                    closeAllActivitiesAndGoToMainScreen();
+                }
+            }
+        };
     }
 
     @Override
@@ -138,10 +185,31 @@ public class UserMainScreenActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_tools) {
 
+        } else if (id == R.id.logout_tools) {
+            Toast.makeText(UserMainScreenActivity.this, "Dupsko", Toast.LENGTH_SHORT).show();
+            logOut();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void logOut() {
+        JSONBuilder jsonBuilder = new JSONBuilder();
+
+        volleyService.postDataVolleyRequest(Consts.POST_CALL_REQUEST_TYPE, Consts.API_LOG_OUT_ENDPOINT, jsonBuilder.getJson());
+    }
+
+    private void closeAllActivitiesAndGoToMainScreen() {
+        Intent mainActivityIntent = new Intent(UserMainScreenActivity.this, MainActivity.class);
+
+        mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(mainActivityIntent);
+    }
+
+    private void deleteTokenFromSharedPreferences(){
+        SharedPreferences sharedPreferences = getSharedPreferences(Consts.TOKEN_FILE, MODE_PRIVATE);
+        SharedPreferencesSaver.deleteTokenFromSharedPreferences(sharedPreferences);
     }
 }

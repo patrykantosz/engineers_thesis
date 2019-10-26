@@ -21,9 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class AddNewFoodProductActivity extends AppCompatActivity {
-    private VolleyService volleyService;
     IResult mResultCallback = null;
-
+    private VolleyService volleyService;
     private Button backToPreviousActivityButton;
     private Button addNewFoodProductButton;
 
@@ -59,7 +58,7 @@ public class AddNewFoodProductActivity extends AppCompatActivity {
         addNewFoodProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checkIfEditTextsAreEmpty())
+                if (!checkIfEditTextsAreEmpty())
                     saveNewProduct();
             }
         });
@@ -81,7 +80,6 @@ public class AddNewFoodProductActivity extends AppCompatActivity {
     }
 
 
-
     private void saveNewProduct() {
         FoodProduct newProductToAdd = getProductDetailsFromEditTexts();
         JSONObject newFoodProductJSON = prepareNewFoodProductJSON(newProductToAdd);
@@ -92,39 +90,39 @@ public class AddNewFoodProductActivity extends AppCompatActivity {
     private boolean checkIfEditTextsAreEmpty() {
         boolean isEmpty = false;
 
-        if(foodProductNameEditText.getText().toString().trim().length() == 0){
+        if (foodProductNameEditText.getText().toString().trim().length() == 0) {
             isEmpty = true;
             redBordersAroundEmptyEditText(foodProductNameEditText);
         }
-        if(foodProductBrandEditText.getText().toString().trim().length() == 0) {
+        if (foodProductBrandEditText.getText().toString().trim().length() == 0) {
             isEmpty = true;
             redBordersAroundEmptyEditText(foodProductBrandEditText);
         }
-        if(foodProductEnergyValueEditText.getText().toString().trim().length() == 0) {
+        if (foodProductEnergyValueEditText.getText().toString().trim().length() == 0) {
             isEmpty = true;
             redBordersAroundEmptyEditText(foodProductEnergyValueEditText);
         }
-        if(foodProductFatsEditText.getText().toString().trim().length() == 0) {
+        if (foodProductFatsEditText.getText().toString().trim().length() == 0) {
             isEmpty = true;
             redBordersAroundEmptyEditText(foodProductFatsEditText);
         }
-        if(foodProductSaturatedFatsEditText.getText().toString().trim().length() == 0) {
+        if (foodProductSaturatedFatsEditText.getText().toString().trim().length() == 0) {
             isEmpty = true;
             redBordersAroundEmptyEditText(foodProductSaturatedFatsEditText);
         }
-        if(foodProductCarbohydratesEditText.getText().toString().trim().length() == 0) {
+        if (foodProductCarbohydratesEditText.getText().toString().trim().length() == 0) {
             isEmpty = true;
             redBordersAroundEmptyEditText(foodProductCarbohydratesEditText);
         }
-        if(foodProductSugarsEditText.getText().toString().trim().length() == 0) {
+        if (foodProductSugarsEditText.getText().toString().trim().length() == 0) {
             isEmpty = true;
             redBordersAroundEmptyEditText(foodProductSugarsEditText);
         }
-        if(foodProductProteinsEditText.getText().toString().trim().length() == 0) {
+        if (foodProductProteinsEditText.getText().toString().trim().length() == 0) {
             isEmpty = true;
             redBordersAroundEmptyEditText(foodProductProteinsEditText);
         }
-        if(foodProductSaltEditText.getText().toString().trim().length() == 0) {
+        if (foodProductSaltEditText.getText().toString().trim().length() == 0) {
             isEmpty = true;
             redBordersAroundEmptyEditText(foodProductSaltEditText);
         }
@@ -164,11 +162,14 @@ public class AddNewFoodProductActivity extends AppCompatActivity {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("AddNewFoodResponseObj", response.toString());
+                Toast.makeText(AddNewFoodProductActivity.this, Consts.ADD_NEW_FOOD_SUCCES_MSG_PL, Toast.LENGTH_SHORT).show();
+                finish();
             }
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("AddNewFoodError", error.toString());
+                Toast.makeText(AddNewFoodProductActivity.this, Consts.ADD_NEW_FOOD_FAILURE_MSG_PL, Toast.LENGTH_SHORT).show();
             }
         };
     }

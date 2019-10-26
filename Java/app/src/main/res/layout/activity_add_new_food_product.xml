@@ -5,40 +5,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AddNewFoodProductActivity">
-    
+
     <RelativeLayout
+        android:id="@+id/actionBarLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:id="@+id/actionBarLayout">
+        android:layout_marginTop="5dp">
 
         <Button
+            android:id="@+id/backToPreviousActivityButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/oval_button"
             android:text="Powrót"
-            android:id="@+id/backToPreviousActivityButton"
-            android:layout_marginStart="10dp"/>
+            android:textColor="#FFFFFF" />
 
         <Button
+            android:id="@+id/saveNewProductButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="Zapisz"
             android:layout_marginEnd="10dp"
-            android:id="@+id/saveNewProductButton"/>
+            android:background="@drawable/oval_button"
+            android:text="Zapisz"
+            android:textColor="#FFFFFF" />
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/textsRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="vertical"
         android:layout_below="@id/actionBarLayout"
-        android:id="@+id/textsRelativeLayout">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/first"
@@ -55,12 +59,11 @@
 
             <EditText
                 android:id="@+id/foodProductNameEditText"
-                android:layout_width="75dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="text"/>
+                android:layout_marginStart="50dp"
+                android:inputType="text" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -79,12 +82,11 @@
 
             <EditText
                 android:id="@+id/foodProductBrandEditText"
-                android:layout_width="75dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="text"/>
+                android:layout_marginStart="50dp"
+                android:inputType="text" />
 
         </RelativeLayout>
 
@@ -106,10 +108,10 @@
                 android:id="@+id/foodProductEnergyValueEditText"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginStart="50dp"
                 android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal" />
         </RelativeLayout>
 
 
@@ -131,10 +133,10 @@
                 android:id="@+id/foodProductFatsEditText"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginStart="50dp"
                 android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -155,10 +157,10 @@
                 android:id="@+id/foodProductSaturatedFatsEditText"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginStart="50dp"
                 android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -179,10 +181,10 @@
                 android:id="@+id/foodProductCarbohydratesEditText"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginStart="50dp"
                 android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -203,10 +205,10 @@
                 android:id="@+id/foodProductSugarsEditText"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginStart="50dp"
                 android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -227,10 +229,10 @@
                 android:id="@+id/foodProductProteinsEditText"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginStart="50dp"
                 android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -251,14 +253,13 @@
                 android:id="@+id/foodProductSaltEditText"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_alignParentEnd="true"
+                android:layout_marginStart="50dp"
                 android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal" />
 
         </RelativeLayout>
     </RelativeLayout>
-    
 
 
 </RelativeLayout>

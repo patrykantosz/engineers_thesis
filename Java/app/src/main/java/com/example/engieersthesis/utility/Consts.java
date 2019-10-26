@@ -5,6 +5,7 @@ public class Consts {
     public static final String API_REGISTER_ENDPOINT = "https://backendforthesis.herokuapp.com/api/auth/register";
     public static final String API_LIST_ALL_FOOD_PRODUCTS_ENDPOINT = "https://backendforthesis.herokuapp.com/api/food/";
     public static final String API_ADD_NEW_FOOD_PRODUCT = "https://backendforthesis.herokuapp.com/api/food/add";
+    public static final String API_LOG_OUT_ENDPOINT = "https://backendforthesis.herokuapp.com/api/auth/logout";
     public static final String API_QUERY_PARAM_TO_SEARCH_FOOD_BY_NAME_ENDPOINT = "?food_name=";
     public static final String POST_METHOD = "POST";
     public static final String TOKEN_KEY = "token";
@@ -34,4 +35,6 @@ public class Consts {
     public static final float LOGIN_MAX_MULTIPLIER = 2f;
 
     public static final String ADD_NEW_FOOD_EMPTY_FIELDS_MSG_PL = "Należy wypełnić wszystkie pola";
+    public static final String ADD_NEW_FOOD_SUCCES_MSG_PL = "Produkt został dodany";
+    public static final String ADD_NEW_FOOD_FAILURE_MSG_PL = "Produkt nie został dodany. Spróbuj ponownie";
 }
