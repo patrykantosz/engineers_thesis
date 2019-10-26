@@ -28,4 +28,8 @@ public class Consts {
     public static final String SUPPER_PL = "Kolacja";
 
     public static final String POST_CALL_REQUEST_TYPE = "POSTCALL";
+
+    public static final int LOGIN_TIMEOUT_MS = 4000;
+    public static final int LOGIN_MAX_RETRIES = 3;
+    public static final float LOGIN_MAX_MULTIPLIER = 2f;
 }

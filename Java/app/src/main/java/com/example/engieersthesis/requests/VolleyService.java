@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,10 +40,12 @@ public class VolleyService {
         try {
             queue = Volley.newRequestQueue(mContext);
 
-            if(urlToRegisterEndpoint.contains(Consts.API_LOGIN_ENDPOINT) ||
-                    urlToRegisterEndpoint.contains(Consts.API_REGISTER_ENDPOINT))
+            if(urlToRegisterEndpoint.contains(Consts.API_REGISTER_ENDPOINT))
             {
                 jsonObj = createLoginOrRegisterJsonObjectRequest(requestType, urlToRegisterEndpoint, jsonRequest);
+            } else if(urlToRegisterEndpoint.contains(Consts.API_LOGIN_ENDPOINT)) {
+                JsonObjectRequest newJsonLoginRequest = createLoginOrRegisterJsonObjectRequest(requestType, urlToRegisterEndpoint, jsonRequest);
+                jsonObj = changeTimeoutForLoginRequest(newJsonLoginRequest);
             } else {
                 jsonObj = createJsonObjectRequestWithAuthToken(requestType, urlToRegisterEndpoint, jsonRequest);
             }
@@ -99,6 +102,15 @@ public class VolleyService {
         };
 
         return jsonObjectRequest;
+    }
+
+    private JsonObjectRequest changeTimeoutForLoginRequest(JsonObjectRequest jsonObj) {
+        jsonObj.setRetryPolicy(new DefaultRetryPolicy(
+                Consts.LOGIN_TIMEOUT_MS,
+                Consts.LOGIN_MAX_RETRIES,
+                Consts.LOGIN_MAX_MULTIPLIER
+        ));
+        return jsonObj;
     }
 
     public void getDataVolleyRequest(final String requestType, String urlToLoginEndpoint) {
