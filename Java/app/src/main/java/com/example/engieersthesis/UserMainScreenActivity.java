@@ -186,7 +186,6 @@ public class UserMainScreenActivity extends AppCompatActivity
         } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.logout_tools) {
-            Toast.makeText(UserMainScreenActivity.this, "Dupsko", Toast.LENGTH_SHORT).show();
             logOut();
         }
 
