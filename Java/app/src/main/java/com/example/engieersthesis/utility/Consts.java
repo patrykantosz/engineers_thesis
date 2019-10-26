@@ -32,4 +32,6 @@ public class Consts {
     public static final int LOGIN_TIMEOUT_MS = 4000;
     public static final int LOGIN_MAX_RETRIES = 3;
     public static final float LOGIN_MAX_MULTIPLIER = 2f;
+
+    public static final String ADD_NEW_FOOD_EMPTY_FIELDS_MSG_PL = "Należy wypełnić wszystkie pola";
 }
