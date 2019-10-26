@@ -11,13 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name=".AddNewFoodProductActivity"/>
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name=".AddFoodProductActivity" />
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name=".UserMainScreenActivity"
             android:label="@string/title_activity_user_main_screen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".MainActivity">
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name=".RegisterActivity" />
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name=".LogInActivity" />
+        <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

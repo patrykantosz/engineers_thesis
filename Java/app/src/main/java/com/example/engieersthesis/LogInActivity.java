@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.ClientError;
 import com.android.volley.VolleyError;
 import com.example.engieersthesis.Interfaces.IResult;
 import com.example.engieersthesis.utility.Consts;
@@ -24,11 +25,12 @@ import org.json.JSONObject;
 
 public class LogInActivity extends AppCompatActivity {
     IResult mResultCallback = null;
-    com.example.engieersthesis.requests.VolleyService VolleyService;
+    private VolleyService volleyService;
     private Button logInButton;
     private EditText loginEditText;
     private EditText passwordEditText;
     private ProgressBar progressBar;
+
 
     @Override
     protected void onResume() {
@@ -44,16 +46,9 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        logInButton = findViewById(R.id.signInButton);
-        loginEditText = findViewById(R.id.loginEditTextLoginActivity);
-        passwordEditText = findViewById(R.id.passwordEditTextLoginActivity);
-
-        progressBar = findViewById(R.id.indeterminateBar);
-        progressBar.setVisibility(View.INVISIBLE);
-
+        prepareAllControllers();
         initVolleyCallback();
-        VolleyService = new VolleyService(mResultCallback, this);
-
+        volleyService = new VolleyService(mResultCallback, this);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +56,17 @@ public class LogInActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 logInButton.setEnabled(false);
                 loginAndGetToken();
-                Intent userMainScreenIntent = new Intent(LogInActivity.this, UserMainScreenActivity.class);
-                startActivity(userMainScreenIntent);
             }
         });
+    }
+
+    private void prepareAllControllers() {
+        logInButton = findViewById(R.id.signInButton);
+        loginEditText = findViewById(R.id.loginEditTextLoginActivity);
+        passwordEditText = findViewById(R.id.passwordEditTextLoginActivity);
+
+        progressBar = findViewById(R.id.indeterminateBar);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     private void loginAndGetToken() {
@@ -79,22 +81,23 @@ public class LogInActivity extends AppCompatActivity {
         jsonBuilder.addNextLine("password", password);
 
         progressBar.setVisibility(View.VISIBLE);
-        VolleyService.postDataVolleyRequest("POSTCALL", Consts.API_LOGIN_ENDPOINT, jsonBuilder.getJson());
+        volleyService.postDataVolleyRequest(Consts.POST_CALL_REQUEST_TYPE, Consts.API_LOGIN_ENDPOINT, jsonBuilder.getJson());
     }
 
     void initVolleyCallback() {
         mResultCallback = new IResult() {
             @Override
             public void notifySuccess(String requestType, JSONArray response) {
-                Log.d("Response:", response.toString());
+                Log.d("Response", response.toString());
 
             }
 
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
-                Log.d("ResponseJSONOBJECT: ", response.toString());
+                Log.d("ResponseJSONOBJECT", response.toString());
                 SharedPreferences sharedPreferences = getSharedPreferences(Consts.TOKEN_FILE, MODE_PRIVATE);
                 progressBar.setVisibility(View.GONE);
+                createIntentForNextActivity();
                 logInButton.setEnabled(true);
                 try {
                     String token = response.getString(Consts.TOKEN_KEY);
@@ -106,8 +109,30 @@ public class LogInActivity extends AppCompatActivity {
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
+                handleResponseErrors(error);
                 Log.d("Response:", error.toString());
             }
         };
+    }
+
+    private void createIntentForNextActivity() {
+        Intent userMainScreenIntent = new Intent(LogInActivity.this, UserMainScreenActivity.class);
+        startActivity(userMainScreenIntent);
+    }
+
+    private void handleResponseErrors(VolleyError error) {
+        if (error instanceof ClientError) {
+            progressBar.setVisibility(View.GONE);
+            handleClientError();
+        }
+    }
+
+    private void handleClientError() {
+        loginEditText.setBackgroundResource(R.drawable.error_edit_text);
+        passwordEditText.setBackgroundResource(R.drawable.error_edit_text);
+        loginEditText.setEnabled(true);
+        passwordEditText.setEnabled(true);
+        loginEditText.setText("");
+        passwordEditText.setText("");
     }
 }
