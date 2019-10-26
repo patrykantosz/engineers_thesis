@@ -6,8 +6,10 @@ public class Consts {
     public static final String API_LIST_ALL_FOOD_PRODUCTS_ENDPOINT = "https://backendforthesis.herokuapp.com/api/food/";
     public static final String API_ADD_NEW_FOOD_PRODUCT = "https://backendforthesis.herokuapp.com/api/food/add";
     public static final String API_LOG_OUT_ENDPOINT = "https://backendforthesis.herokuapp.com/api/auth/logout";
+    public static final String API_USER_INFO_ENDPOINT = "https://backendforthesis.herokuapp.com/api/auth/user";
     public static final String API_QUERY_PARAM_TO_SEARCH_FOOD_BY_NAME_ENDPOINT = "?food_name=";
     public static final String POST_METHOD = "POST";
+    public static final String GET_METHOD = "GET";
     public static final String TOKEN_KEY = "token";
     public static final String CONTENT_TYPE = "Content-Type";
     public static final String CONTENT_TYPE_APPLICATION_JSON_UTF8 = "application/json; UTF-8";
