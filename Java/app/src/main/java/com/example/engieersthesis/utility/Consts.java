@@ -40,4 +40,5 @@ public class Consts {
     public static final String ADD_NEW_FOOD_SUCCES_MSG_PL = "Produkt został dodany";
     public static final String ADD_NEW_FOOD_FAILURE_MSG_PL = "Produkt nie został dodany, spróbuj ponownie";
     public static final String WRONG_CREDENTIALS_MSG_PL = "Nieprawidłowe dane logowania, spróbuj ponownie";
+    public static final String WRONG_REGISTER_CREDENTIALS_MSG_PL = "Nieprawidłowe dane rejestracji, spróbuj ponownie";
 }
