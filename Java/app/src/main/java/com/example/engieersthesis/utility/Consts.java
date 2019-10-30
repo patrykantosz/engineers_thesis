@@ -25,6 +25,8 @@ public class Consts {
     public static final String FOOD_PRODUCT_PROTEINS = "proteins";
     public static final String FOOD_PRODUCT_SALT = "salt";
 
+    public static final String JSON_STRING_FOOD_ID = "foodStringJson";
+
     public static final String BREAKFAST_PL = "Śniadanie";
     public static final String BRUNCH_PL = "Drugie śniadanie";
     public static final String DINNER_PL = "Obiad";

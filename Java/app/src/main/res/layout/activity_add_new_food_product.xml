@@ -156,7 +156,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/product_saturated_fats"
-                    android:textSize="22dp" />
+                    android:textSize="22dp"
+                    android:layout_marginStart="20dp"/>
 
                 <EditText
                     android:id="@+id/foodProductSaturatedFatsEditText"
@@ -204,7 +205,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/product_sugars"
-                    android:textSize="22dp" />
+                    android:textSize="22dp"
+                    android:layout_marginStart="20dp"/>
 
                 <EditText
                     android:id="@+id/foodProductSugarsEditText"

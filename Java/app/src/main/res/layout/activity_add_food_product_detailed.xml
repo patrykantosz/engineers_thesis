@@ -1,9 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddFoodProductDetailedActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/actionBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="25dp">
+
+        <Button
+            android:id="@+id/backToPreviousActivityButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/oval_button"
+            android:text="Powrót"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/saveNewProductButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/oval_button"
+            android:text="Zapisz"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/productWeightLayout"
+        android:layout_below="@id/actionBarLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/string_product_weight"
+            android:id="@+id/productWeightTextView"
+            android:layout_marginEnd="20dp"/>
+
+        <EditText
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_toEndOf="@id/productWeightTextView"
+            android:id="@+id/productWeightEditText"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:textSize="20dp"
+            android:id="@+id/gramMassUnit"
+            android:text="@string/string_gram_mass_unit"
+            android:layout_toEndOf="@id/productWeightEditText"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productWeightLayout">
+    <RelativeLayout
+        android:id="@+id/textsRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/actionBarLayout"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:id="@+id/nameAndBrandTextView"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameAndBrandTextView"
+            android:id="@+id/energyValueLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/energyValueTextView"
+                android:text="@string/product_energy_value"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/energyValueValueTextView"
+                android:layout_width="75dp"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="125dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:text="@string/string_kcal"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp"
+                android:textSize="20dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/energyValueLayout"
+            android:id="@+id/fatsLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/fatsTextView"
+                android:text="@string/product_fats"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/fatsValueTextView"
+                android:layout_width="75dp"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="125dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp"
+                android:text="@string/string_gram_mass_unit"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fatsLayout"
+            android:id="@+id/saturatedFatsLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/saturatedFatsTextView"
+                android:text="@string/product_saturated_fats"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/saturatedFatsValueTextView"
+                android:layout_width="75dp"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="125dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp"
+                android:text="@string/string_gram_mass_unit"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/saturatedFatsLayout"
+            android:id="@+id/carbohydratesLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/carbohydratesTextView"
+                android:text="@string/product_carbohydrates"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/carbohydratesValueTextView"
+                android:layout_width="75dp"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="125dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp"
+                android:text="@string/string_gram_mass_unit"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/carbohydratesLayout"
+            android:id="@+id/sugarsLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/sugarsTextView"
+                android:text="@string/product_sugars"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/sugarsValueTextView"
+                android:layout_width="75dp"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="125dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp"
+                android:text="@string/string_gram_mass_unit"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sugarsLayout"
+            android:id="@+id/proteinsLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/proteinsTextView"
+                android:text="@string/product_proteins"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/proteinsValueTextView"
+                android:layout_width="75dp"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="125dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp"
+                android:text="@string/string_gram_mass_unit"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/proteinsLayout"
+            android:id="@+id/saltLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/saltTextView"
+                android:text="@string/product_salt"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/saltValueTextView"
+                android:layout_width="75dp"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="125dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp"
+                android:text="@string/string_gram_mass_unit"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

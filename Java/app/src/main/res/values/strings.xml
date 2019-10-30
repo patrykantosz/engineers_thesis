@@ -31,6 +31,10 @@
     <string name="product_proteins">Białko</string>
     <string name="product_salt">Sól</string>
 
+    <string name="string_kcal">kcal</string>
+    <string name="string_product_weight">Wielkość porcji</string>
+    <string name="string_gram_mass_unit">g</string>
+
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>

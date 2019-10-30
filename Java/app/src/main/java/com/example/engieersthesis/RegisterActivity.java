@@ -111,14 +111,14 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
-                handleResponseErrors(error);
+                handleResponseErrors(error); //TODO Check if editexts are empty
                 Log.d("Response:", error.toString());
             }
         };
     }
 
     private void handleResponseErrors(VolleyError error) {
-        if (error instanceof ClientError) {
+        if (error instanceof ClientError) { //TODO Add support for other types of errors
             progressBar.setVisibility(View.GONE);
             registerButton.setEnabled(true);
             handleClientError();

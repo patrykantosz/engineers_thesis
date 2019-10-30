@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -15,12 +16,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.engieersthesis.Interfaces.IResult;
 import com.example.engieersthesis.requests.VolleyService;
 import com.example.engieersthesis.utility.Consts;
 import com.example.engieersthesis.utility.JSONUtilities;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -32,6 +35,7 @@ public class AddFoodProductActivity extends AppCompatActivity {
     private EditText foodSearchEditText;
     private VolleyService volleyService;
     private Button addNewFoodProductButton;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class AddFoodProductActivity extends AppCompatActivity {
         mealNameTextView = findViewById(R.id.mealNameTextView);
         foodSearchEditText = findViewById(R.id.foodSearchEditText);
         addNewFoodProductButton = findViewById(R.id.addNewFoodProductButton);
+        listView = findViewById(R.id.foodProductsListView);
 
         mealNameTextView.setText(mealName);
 
@@ -74,6 +79,7 @@ public class AddFoodProductActivity extends AppCompatActivity {
                 startActivity(addNewFoodProductIntent);
             }
         });
+
     }
 
     private void searchProductInDatabase(String foodToSearch) {
@@ -89,15 +95,27 @@ public class AddFoodProductActivity extends AppCompatActivity {
             @Override
             public void notifySuccess(String requestType, JSONArray response) {
                 Log.d("ResponseJSONARRAY:", response.toString());
-                ArrayList<JSONObject> listItems = JSONUtilities.getArrayListFromJSONARRAY(response);
-
-                ListView listView = findViewById(R.id.foodProductsListView);
+                final ArrayList<JSONObject> listItems = JSONUtilities.getArrayListFromJSONARRAY(response);
 
                 ListAdapter adapter = new com.example.engieersthesis.adapers.ListAdapter(AddFoodProductActivity.this,
                         R.layout.food_products_list_view, R.id.foodProductNameTextView, listItems);
 
                 listView.setAdapter(adapter);
 
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int postion, long id) {
+                        Object listItem = parent.getItemAtPosition(postion);
+                        if(listItem != null) {
+                            Log.d("ZNALEZIONE", listItem.toString());
+                            Intent addFoodProductDetailedIntent = new Intent(AddFoodProductActivity.this, AddFoodProductDetailedActivity.class);
+                            addFoodProductDetailedIntent.putExtra("foodStringJson", listItem.toString());
+                            startActivity(addFoodProductDetailedIntent);
+                        } else {
+                            Log.d("ZNALEZIONE", "Dupsko");
+                        }
+                    }
+                });
             }
 
             @Override
