@@ -15,10 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.ClientError;
 import com.android.volley.VolleyError;
 import com.example.engieersthesis.Interfaces.IResult;
+import com.example.engieersthesis.requests.VolleyService;
 import com.example.engieersthesis.utility.Consts;
 import com.example.engieersthesis.utility.JSONBuilder;
 import com.example.engieersthesis.utility.SharedPreferencesSaver;
-import com.example.engieersthesis.requests.VolleyService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -139,6 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void createIntentForNextActivity() {
+        Log.d("SIUSIAK", "STWORZYŁ");
         Intent userMainScreenIntent = new Intent(RegisterActivity.this, UserMainScreenActivity.class);
         userMainScreenIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(userMainScreenIntent);

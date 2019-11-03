@@ -8,102 +8,232 @@
     tools:context=".UserMainScreenActivity"
     tools:showIn="@layout/app_bar_user_main_screen">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <GridLayout
-            android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/mainUserScreenRelativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/calendarActionBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/breakfastTableRow"
-            android:orientation="horizontal">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp">
+
+            <ImageButton
+                android:id="@+id/leftArrowButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/calendarTextView"
+                android:background="@null"
+                android:src="@drawable/baseline_arrow_back_black_36dp" />
+
             <TextView
+                android:id="@+id/calendarTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:text="@string/breakfast"
-                android:layout_gravity="start"
-                android:id="@+id/breakfastTextView"
-                android:textStyle="bold"
-                android:layout_marginLeft="8dp"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:textSize="30dp" />
 
-            <Button
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="end"
-                android:background="@drawable/add_icon"
-                android:id="@+id/breakfastAddButton"/>
-        </GridLayout>
+            <ImageButton
+                android:id="@+id/rightArrowButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/calendarTextView"
+                android:background="@null"
+                android:src="@drawable/baseline_arrow_forward_black_36dp" />
 
-        <GridLayout
-            android:layout_width="wrap_content"
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/brunchTableRow"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:text="@string/brunch"
-                android:layout_gravity="start"
-                android:id="@+id/brunchTextView"
-                android:textStyle="bold"
-                android:layout_marginLeft="8dp"/>
+            android:layout_below="@id/calendarActionBar">
 
-            <Button
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="end"
-                android:background="@drawable/add_icon"
-                android:id="@+id/brunchAddButton"/>
-        </GridLayout>
+            <RelativeLayout
+                android:id="@+id/mealsRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dinnerTableRow"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:text="@string/dinner"
-                android:layout_gravity="start"
-                android:id="@+id/dinnerTextView"
-                android:textStyle="bold"
-                android:layout_marginLeft="8dp"/>
+                <RelativeLayout
+                    android:id="@+id/breakfastRelativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
 
-            <Button
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="end"
-                android:background="@drawable/add_icon"
-                android:id="@+id/dinnerAddButton"/>
-        </GridLayout>
+                    <TextView
+                        android:id="@+id/breakfastTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/breakfast"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
 
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/supperTableRow"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:text="@string/supper"
-                android:layout_gravity="start"
-                android:id="@+id/supperTextView"
-                android:textStyle="bold"
-                android:layout_marginLeft="8dp"/>
+                    <Button
+                        android:id="@+id/breakfastAddButton"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:background="@drawable/add_icon" />
 
-            <Button
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="end"
-                android:background="@drawable/add_icon"
-                android:id="@+id/supperAddButton"/>
-        </GridLayout>
-    </TableLayout>
+                    <com.example.engieersthesis.utility.NonScrollListView
+                        android:id="@+id/breakfastFoodProductsListView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/breakfastTextView"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"></com.example.engieersthesis.utility.NonScrollListView>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/breakfastRelativeLayout"
+                    android:background="#c0c0c0" />
+
+                <RelativeLayout
+                    android:id="@+id/brunchRelativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/breakfastRelativeLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/brunchTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/brunch"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/brunchAddButton"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:background="@drawable/add_icon" />
+
+                    <com.example.engieersthesis.utility.NonScrollListView
+                        android:id="@+id/brunchFoodProductsListView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/brunchTextView"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"></com.example.engieersthesis.utility.NonScrollListView>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/brunchRelativeLayout"
+                    android:background="#c0c0c0" />
+
+                <RelativeLayout
+                    android:id="@+id/dinnerRelativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/brunchRelativeLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/dinnerTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/dinner"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/dinnerAddButton"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:background="@drawable/add_icon" />
+
+                    <com.example.engieersthesis.utility.NonScrollListView
+                        android:id="@+id/dinnerFoodProductsListView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/dinnerTextView"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"></com.example.engieersthesis.utility.NonScrollListView>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/dinnerRelativeLayout"
+                    android:background="#c0c0c0" />
+
+                <RelativeLayout
+                    android:id="@+id/supperRelativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dinnerRelativeLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/supperTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginLeft="8dp"
+                        android:text="@string/supper"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/supperAddButton"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:background="@drawable/add_icon" />
+
+                    <com.example.engieersthesis.utility.NonScrollListView
+                        android:id="@+id/supperFoodProductsListView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/supperTextView"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"></com.example.engieersthesis.utility.NonScrollListView>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/supperRelativeLayout"
+                    android:background="#c0c0c0" />
+
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

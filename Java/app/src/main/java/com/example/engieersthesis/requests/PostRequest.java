@@ -31,9 +31,13 @@ public class PostRequest extends AsyncTask<Void, Void, String> {
         this.jsonRequest = jsonRequest;
     }
 
-    public String getToken() { return this.token; }
+    public String getToken() {
+        return this.token;
+    }
 
-    public boolean isFinished() { return  finish; }
+    public boolean isFinished() {
+        return finish;
+    }
 
     @Override
     protected void onPreExecute() {

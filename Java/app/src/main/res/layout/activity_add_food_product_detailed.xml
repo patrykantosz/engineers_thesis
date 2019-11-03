@@ -24,6 +24,18 @@
             android:textColor="#FFFFFF" />
 
         <Button
+            android:id="@+id/deleteFoodProductButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/oval_button"
+            android:text="Usuń"
+            android:visibility="invisible"
+            android:clickable="false"
+            android:textColor="#FFFFFF" />
+
+        <Button
             android:id="@+id/saveNewProductButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,6 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/productWeightLayout"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_below="@id/actionBarLayout">
 
         <TextView
@@ -78,8 +92,8 @@
         android:layout_below="@id/actionBarLayout"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -93,6 +107,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/nameAndBrandTextView"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/energyValueLayout">
 
             <TextView
@@ -125,6 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/energyValueLayout"
+            android:layout_marginBottom="10dp"
             android:id="@+id/fatsLayout">
 
             <TextView
@@ -157,6 +174,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/fatsLayout"
+            android:layout_marginBottom="10dp"
             android:id="@+id/saturatedFatsLayout">
 
             <TextView
@@ -190,6 +208,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/saturatedFatsLayout"
+            android:layout_marginBottom="10dp"
             android:id="@+id/carbohydratesLayout">
 
             <TextView
@@ -222,6 +241,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/carbohydratesLayout"
+            android:layout_marginBottom="10dp"
             android:id="@+id/sugarsLayout">
 
             <TextView
@@ -255,6 +275,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/sugarsLayout"
+            android:layout_marginBottom="10dp"
             android:id="@+id/proteinsLayout">
 
             <TextView
@@ -287,6 +308,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/proteinsLayout"
+            android:layout_marginBottom="10dp"
             android:id="@+id/saltLayout">
 
             <TextView

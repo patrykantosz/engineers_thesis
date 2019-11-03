@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkIfTokenExistAndRemoveIt() {
         SharedPreferences sharedPreferences = getSharedPreferences(Consts.TOKEN_FILE, MODE_PRIVATE);
         String token = sharedPreferences.getString(Consts.TOKEN_KEY, "");
-        if(token.length() != 0) {
+        if (token.length() != 0) {
             SharedPreferencesSaver.deleteTokenFromSharedPreferences(sharedPreferences);
         }
     }

@@ -1,5 +1,6 @@
 package com.example.engieersthesis;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -8,13 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.VolleyError;
 import com.example.engieersthesis.Interfaces.IResult;
 import com.example.engieersthesis.requests.VolleyService;
 import com.example.engieersthesis.utility.Consts;
+import com.example.engieersthesis.utility.JSONBuilder;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,6 +28,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
     private VolleyService volleyService;
     private Button backToPreviousActivityButton;
     private Button addFoodProductToHistoryButton;
+    private Button deleteFoodProductButton;
 
     private EditText productWeightEditText;
 
@@ -39,6 +45,10 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
 
     private String foodName;
     private String foodBrand;
+    private String mealType;
+    private String mealDate;
+    private String foodDetailsId;
+    private String foodWeight;
 
     private double foodValuesMultiplier;
     private double energyValue;
@@ -49,9 +59,14 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
     private double proteinsValue;
     private double saltValue;
 
-    private double defaultMassDiv = 100;
-
+    private boolean isInEditMode = false;
     private boolean isWeightEditTextEmpty = true;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +76,53 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         convertBundleStringToJsonObject(bundle.getString(Consts.JSON_STRING_FOOD_ID));
 
+        isInEditMode = getIntent().getBooleanExtra(Consts.FOOD_EDITED_INTENT_EXTRA, false);
+
+
         prepareAllControllers();
         getFoodDetails();
         setFoodNameAndBrandTextView();
+
+        initVolleyCallback();
+        volleyService = new VolleyService(mResultCallback, this);
+        mealDate = getIntent().getStringExtra(Consts.MEAL_DATE_INTENT_EXTRA);
+
+        if (!isInEditMode) {
+            mealType = getIntent().getStringExtra(Consts.MEAL_TYPE_TO_JSON_REQUEST);
+        } else {
+            IResult deleteResultCallback = new IResult() {
+                @Override
+                public void notifySuccess(String requestType, JSONArray response) {
+                    Log.d("ResponseArray", response.toString());
+                }
+
+                @Override
+                public void notifySuccess(String requestType, JSONObject response) {
+                    Log.d("ResponseObject", response.toString());
+                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_DELETE_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
+                    volleyService.setmResultCallback(mResultCallback);
+                    goBackToUserMainActivity();
+                }
+
+                @Override
+                public void notifyError(String requestType, VolleyError error) {
+                    Log.d("ErrorResponse", error.toString());
+                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_DELETE_FAILURE_MSG_PL, Toast.LENGTH_SHORT).show();
+                    volleyService.setmResultCallback(mResultCallback);
+                }
+            };
+            volleyService.setmResultCallback(deleteResultCallback);
+            addFoodWeightToEditText();
+            deleteFoodProductButton.setVisibility(View.VISIBLE);
+            deleteFoodProductButton.setClickable(true);
+            deleteFoodProductButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String urlToDeleteFoodWithQueryParams = Consts.API_DELETE_FOOD_FROM_USER_HISTORY_ENDPOINT + Consts.API_QUERY_PARAM_TO_DETETE_FOOD_FROM_USER_HISTORY + foodDetailsId;
+                    volleyService.deleteDataVolleyRequest(Consts.DELETE_METHOD, urlToDeleteFoodWithQueryParams);
+                }
+            });
+        }
 
         productWeightEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -73,7 +132,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 if (charSequence.length() >= 1) {
-                    foodValuesMultiplier = (Double.parseDouble(charSequence.toString()) / defaultMassDiv);
+                    foodValuesMultiplier = (Double.parseDouble(charSequence.toString()) / Consts.DEFAULT_MASS_DIV);
                     isWeightEditTextEmpty = false;
                     fillTextViews();
                 } else {
@@ -95,11 +154,83 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
             }
         });
 
+        addFoodProductToHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isInEditMode)
+                    addProductToUserHistory();
+                else
+                    updateProductInUserHistory();
+            }
+        });
+
+    }
+
+    private void updateProductInUserHistory() {
+        final JSONBuilder jsonBuilder = new JSONBuilder();
+        if (checkIfWeightChanged()) {
+            jsonBuilder.addNextLine(Consts.FOOD_PRODUCT_WEIGHT, productWeightEditText.getText().toString());
+            jsonBuilder.addNextLine(Consts.FOOD_DETAILS_ID, foodDetailsId);
+
+            IResult updateResultCallback = new IResult() {
+                @Override
+                public void notifySuccess(String requestType, JSONArray response) {
+                    Log.d("ResponseArray", response.toString());
+                }
+
+                @Override
+                public void notifySuccess(String requestType, JSONObject response) {
+                    Log.d("PATCHResponseObject", response.toString());
+                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_UPDATE_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
+                    volleyService.setmResultCallback(mResultCallback);
+                    goBackToUserMainActivity();
+                }
+
+                @Override
+                public void notifyError(String requestType, VolleyError error) {
+                    Log.d("ErrorResponse", error.toString());
+                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_UPDATE_FAILURE_MSG_PL, Toast.LENGTH_SHORT).show();
+                    volleyService.setmResultCallback(mResultCallback);
+
+                }
+            };
+            volleyService.setmResultCallback(updateResultCallback);
+            volleyService.patchDataVolleyRequest(Consts.PATCH_METHOD, Consts.API_UPDATE_FOOD_WEIGHT_ENDPOINT, jsonBuilder.getJson());
+        } else {
+            Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_UPDATE_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
+            goBackToUserMainActivity();
+        }
+
+    }
+
+    private boolean checkIfWeightChanged() {
+        return !productWeightEditText.getText().toString().equals(foodWeight);
+    }
+
+    void initVolleyCallback() {
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONArray response) {
+                Log.d("ResponseADD", response.toString());
+            }
+
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("ResponseJSONObjectADD", response.toString());
+                goBackToUserMainActivity();
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("ResponseADD", error.toString());
+            }
+        };
     }
 
     private void prepareAllControllers() {
         backToPreviousActivityButton = findViewById(R.id.backToPreviousActivityButton);
         addFoodProductToHistoryButton = findViewById(R.id.saveNewProductButton);
+        deleteFoodProductButton = findViewById(R.id.deleteFoodProductButton);
 
         productWeightEditText = findViewById(R.id.productWeightEditText);
 
@@ -125,6 +256,8 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
         try {
             foodName = foodJson.getString(Consts.FOOD_PRODUCT_NAME);
             foodBrand = foodJson.getString(Consts.FOOD_PRODUCT_BRAND);
+            if (isInEditMode)
+                foodDetailsId = foodJson.getString(Consts.FOOD_DETAILS_ID);
 
             energyValue = foodJson.getDouble(Consts.FOOD_PRODUCT_ENERGY_VALUE);
             fatsValue = foodJson.getDouble(Consts.FOOD_PRODUCT_FATS);
@@ -140,7 +273,6 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
 
     private void fillTextViews() {
         if (isWeightEditTextEmpty == false) {
-            Log.d("DUPA", "DUPSKO WYWOLANE");
             energyValueValueTextView.setText(Double.toString(energyValue * foodValuesMultiplier));
             fatsValueTextView.setText(Double.toString(fatsValue * foodValuesMultiplier));
             saturatedFatsValueTextView.setText(Double.toString(saturatedFatsValue * foodValuesMultiplier));
@@ -149,7 +281,6 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
             proteinValueTextView.setText(Double.toString(proteinsValue * foodValuesMultiplier));
             saltValueTextView.setText(Double.toString(saltValue * foodValuesMultiplier));
         } else {
-            Log.d("DUPA", "DUPSKO WYWOLANE FALSE");
             energyValueValueTextView.setText("");
             fatsValueTextView.setText("");
             saturatedFatsValueTextView.setText("");
@@ -162,5 +293,36 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
 
     private void setFoodNameAndBrandTextView() {
         nameAndBrandTextView.setText(foodName + "(" + foodBrand + ")");
+    }
+
+    private void addProductToUserHistory() {
+        JSONBuilder jsonBuilder = new JSONBuilder();
+        try {
+            jsonBuilder.addNextLine(Consts.FOOD_PRODUCT_ID, foodJson.getString("id"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        jsonBuilder.addNextLine(Consts.FOOD_PRODUCT_WEIGHT, productWeightEditText.getText().toString());
+        jsonBuilder.addNextLine(Consts.MEAL_TYPE, mealType);
+        jsonBuilder.addNextLine(Consts.MEAL_DATE, mealDate);
+
+        Log.d("JSON", jsonBuilder.getJson().toString());
+        volleyService.postDataVolleyRequest(Consts.POST_METHOD, Consts.API_ADD_NEW_PRODUCT_TO_MEAL_ENDPOINT, jsonBuilder.getJson());
+    }
+
+    private void goBackToUserMainActivity() {
+        Intent userMainActivityIntent = new Intent(AddFoodProductDetailedActivity.this, UserMainScreenActivity.class);
+        userMainActivityIntent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, mealDate);
+        userMainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(userMainActivityIntent);
+    }
+
+    private void addFoodWeightToEditText() {
+        try {
+            foodWeight = foodJson.getString(Consts.FOOD_PRODUCT_WEIGHT);
+            productWeightEditText.setText(foodWeight);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

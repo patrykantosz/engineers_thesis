@@ -162,7 +162,7 @@ public class AddNewFoodProductActivity extends AppCompatActivity {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("AddNewFoodResponseObj", response.toString());
-                Toast.makeText(AddNewFoodProductActivity.this, Consts.ADD_NEW_FOOD_SUCCES_MSG_PL, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddNewFoodProductActivity.this, Consts.ADD_NEW_FOOD_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
                 finish();
             }
 

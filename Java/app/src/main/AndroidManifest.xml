@@ -22,7 +22,7 @@
             android:name=".UserMainScreenActivity"
             android:label="@string/title_activity_user_main_screen"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".RegisterActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
@@ -31,7 +31,7 @@
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize">
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

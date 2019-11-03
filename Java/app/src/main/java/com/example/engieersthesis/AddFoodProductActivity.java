@@ -16,14 +16,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.engieersthesis.Interfaces.IResult;
 import com.example.engieersthesis.requests.VolleyService;
 import com.example.engieersthesis.utility.Consts;
 import com.example.engieersthesis.utility.JSONUtilities;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -36,13 +34,16 @@ public class AddFoodProductActivity extends AppCompatActivity {
     private VolleyService volleyService;
     private Button addNewFoodProductButton;
     private ListView listView;
+    private String mealName;
+    private String mealDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food_product);
 
-        String mealName = getIntent().getStringExtra("mealName");
+        mealName = getIntent().getStringExtra(Consts.MEAL_TYPE_INTENT_EXTRA);
+        mealDate = getIntent().getStringExtra(Consts.MEAL_DATE_INTENT_EXTRA);
 
         mealNameTextView = findViewById(R.id.mealNameTextView);
         foodSearchEditText = findViewById(R.id.foodSearchEditText);
@@ -87,7 +88,7 @@ public class AddFoodProductActivity extends AppCompatActivity {
                 Consts.API_QUERY_PARAM_TO_SEARCH_FOOD_BY_NAME_ENDPOINT + foodToSearch;
         Log.d("URL: ", urlWithFoodToSearchAsQueryParam);
 
-        volleyService.getDataVolleyRequest("GETCALL", urlWithFoodToSearchAsQueryParam);
+        volleyService.getDataVolleyRequest(Consts.GET_METHOD, urlWithFoodToSearchAsQueryParam);
     }
 
     void initVolleyCallback() {
@@ -106,13 +107,12 @@ public class AddFoodProductActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int postion, long id) {
                         Object listItem = parent.getItemAtPosition(postion);
-                        if(listItem != null) {
-                            Log.d("ZNALEZIONE", listItem.toString());
+                        if (listItem != null) {
                             Intent addFoodProductDetailedIntent = new Intent(AddFoodProductActivity.this, AddFoodProductDetailedActivity.class);
-                            addFoodProductDetailedIntent.putExtra("foodStringJson", listItem.toString());
+                            addFoodProductDetailedIntent.putExtra(Consts.JSON_STRING_FOOD_ID, listItem.toString());
+                            addFoodProductDetailedIntent.putExtra(Consts.MEAL_TYPE_TO_JSON_REQUEST, getMealType());
+                            addFoodProductDetailedIntent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, mealDate);
                             startActivity(addFoodProductDetailedIntent);
-                        } else {
-                            Log.d("ZNALEZIONE", "Dupsko");
                         }
                     }
                 });
@@ -128,6 +128,21 @@ public class AddFoodProductActivity extends AppCompatActivity {
                 Log.d("Response:", error.toString());
             }
         };
+    }
+
+    private String getMealType() {
+        switch (mealName) {
+            case Consts.BREAKFAST_PL:
+                return Consts.BREAKFAST_EN;
+            case Consts.BRUNCH_PL:
+                return Consts.BRUNCH_EN;
+            case Consts.DINNER_PL:
+                return Consts.DINNER_EN;
+            case Consts.SUPPER_PL:
+                return Consts.SUPPER_EN;
+        }
+
+        return "";
     }
 
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class JSONUtilities {
     static public ArrayList<JSONObject> getArrayListFromJSONARRAY(JSONArray jsonArray) {
 
-        ArrayList<JSONObject> aList  = new ArrayList<>();
+        ArrayList<JSONObject> aList = new ArrayList<>();
 
         try {
             if (jsonArray != null) {
