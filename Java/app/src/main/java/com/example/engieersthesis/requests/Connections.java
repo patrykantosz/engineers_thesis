@@ -34,8 +34,8 @@ public class Connections {
         }
     }
 
-    private void connectToEndpoint(){
-        if(endpointURL != null) {
+    private void connectToEndpoint() {
+        if (endpointURL != null) {
             try {
                 this.connectionToEndpoint = (HttpsURLConnection) endpointURL.openConnection();
             } catch (IOException e) {
@@ -44,18 +44,18 @@ public class Connections {
         }
     }
 
-    private void setDoOutput(boolean value){
-        if(connectionToEndpoint != null)
+    private void setDoOutput(boolean value) {
+        if (connectionToEndpoint != null)
             connectionToEndpoint.setDoOutput(value);
     }
 
     private void setDoInput(boolean value) {
-        if(connectionToEndpoint != null)
+        if (connectionToEndpoint != null)
             connectionToEndpoint.setDoInput(value);
     }
 
     private void setRequestMethod(String requestMethod) {
-        if(connectionToEndpoint != null) {
+        if (connectionToEndpoint != null) {
             try {
                 connectionToEndpoint.setRequestMethod(requestMethod);
             } catch (ProtocolException e) {
@@ -65,12 +65,12 @@ public class Connections {
     }
 
     private void setRequestProperty(String key, String value) {
-        if(connectionToEndpoint != null)
+        if (connectionToEndpoint != null)
             connectionToEndpoint.setRequestProperty(key, value);
     }
 
     private void sendJsonRequest(String jsonRequest) {
-        if(connectionToEndpoint != null) {
+        if (connectionToEndpoint != null) {
             try {
                 outputStreamWriter = new OutputStreamWriter(connectionToEndpoint.getOutputStream());
                 outputStreamWriter.write(jsonRequest);
@@ -80,7 +80,6 @@ public class Connections {
             }
         }
     }
-
 
 
 }

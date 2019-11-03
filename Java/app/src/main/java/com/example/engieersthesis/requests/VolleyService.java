@@ -35,15 +35,77 @@ public class VolleyService {
         mContext = context;
     }
 
+    public void setmResultCallback(IResult mResultCallback) {
+        this.mResultCallback = mResultCallback;
+    }
+
+    public void deleteDataVolleyRequest(final String requestType, String urlToDeleteEndpoint) {
+        queue = Volley.newRequestQueue(mContext);
+        jsonObj = new JsonObjectRequest(Request.Method.DELETE, urlToDeleteEndpoint, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (mResultCallback != null)
+                    mResultCallback.notifySuccess(requestType, response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mResultCallback != null)
+                    mResultCallback.notifyError(requestType, error);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                SharedPreferences sharedPreferences = mContext.getSharedPreferences(Consts.TOKEN_FILE, Context.MODE_PRIVATE);
+                String token = sharedPreferences.getString(Consts.TOKEN_KEY, "");
+                Log.d("getHeadersDELETE", token);
+                params.put(Consts.CONTENT_TYPE, Consts.CONTENT_TYPE_APPLICATION_JSON_UTF8);
+                params.put("Authorization", "Token " + token);
+                return params;
+            }
+        };
+
+        queue.add(jsonObj);
+    }
+
+    public void patchDataVolleyRequest(final String requestType, String urlToPatchEndpoint, JSONObject jsonRequest) {
+        queue = Volley.newRequestQueue(mContext);
+        jsonObj = new JsonObjectRequest(Request.Method.PATCH, urlToPatchEndpoint, jsonRequest, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (mResultCallback != null)
+                    mResultCallback.notifySuccess(requestType, response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mResultCallback != null)
+                    mResultCallback.notifyError(requestType, error);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                SharedPreferences sharedPreferences = mContext.getSharedPreferences(Consts.TOKEN_FILE, Context.MODE_PRIVATE);
+                String token = sharedPreferences.getString(Consts.TOKEN_KEY, "");
+                Log.d("getHeadersPATCH", token);
+                params.put(Consts.CONTENT_TYPE, Consts.CONTENT_TYPE_APPLICATION_JSON_UTF8);
+                params.put("Authorization", "Token " + token);
+                return params;
+            }
+        };
+
+        queue.add(jsonObj);
+    }
 
     public void postDataVolleyRequest(final String requestType, String urlToRegisterEndpoint, JSONObject jsonRequest) {
         try {
             queue = Volley.newRequestQueue(mContext);
 
-            if(urlToRegisterEndpoint.contains(Consts.API_REGISTER_ENDPOINT))
-            {
+            if (urlToRegisterEndpoint.contains(Consts.API_REGISTER_ENDPOINT)) {
                 jsonObj = createLoginOrRegisterJsonObjectRequest(requestType, urlToRegisterEndpoint, jsonRequest);
-            } else if(urlToRegisterEndpoint.contains(Consts.API_LOGIN_ENDPOINT)) {
+            } else if (urlToRegisterEndpoint.contains(Consts.API_LOGIN_ENDPOINT)) {
                 JsonObjectRequest newJsonLoginRequest = createLoginOrRegisterJsonObjectRequest(requestType, urlToRegisterEndpoint, jsonRequest);
                 jsonObj = changeTimeoutForLoginRequest(newJsonLoginRequest);
             } else {

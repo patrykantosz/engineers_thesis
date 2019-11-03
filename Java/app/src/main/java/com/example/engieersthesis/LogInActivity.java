@@ -8,16 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.ClientError;
 import com.android.volley.VolleyError;
 import com.example.engieersthesis.Interfaces.IResult;
+import com.example.engieersthesis.requests.VolleyService;
 import com.example.engieersthesis.utility.Consts;
 import com.example.engieersthesis.utility.JSONBuilder;
 import com.example.engieersthesis.utility.SharedPreferencesSaver;
-import com.example.engieersthesis.requests.VolleyService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -123,6 +124,7 @@ public class LogInActivity extends AppCompatActivity {
     private void handleResponseErrors(VolleyError error) {
         if (error instanceof ClientError) {
             progressBar.setVisibility(View.GONE);
+            logInButton.setEnabled(true);
             handleClientError();
         }
     }
@@ -134,5 +136,6 @@ public class LogInActivity extends AppCompatActivity {
         passwordEditText.setEnabled(true);
         loginEditText.setText("");
         passwordEditText.setText("");
+        Toast.makeText(LogInActivity.this, Consts.WRONG_CREDENTIALS_MSG_PL, Toast.LENGTH_SHORT).show();
     }
 }

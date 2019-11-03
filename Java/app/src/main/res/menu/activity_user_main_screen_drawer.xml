@@ -20,6 +20,9 @@
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_tools" />
+        <item
+            android:id="@+id/logout_tools"
+            android:title="@string/log_out" />
     </group>
 
 </menu>

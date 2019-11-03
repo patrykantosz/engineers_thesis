@@ -5,260 +5,269 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AddNewFoodProductActivity">
-    
+
     <RelativeLayout
+        android:id="@+id/actionBarLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:id="@+id/actionBarLayout">
+        android:layout_marginTop="5dp">
 
         <Button
+            android:id="@+id/backToPreviousActivityButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/oval_button"
             android:text="Powrót"
-            android:id="@+id/backToPreviousActivityButton"
-            android:layout_marginStart="10dp"/>
+            android:textColor="#FFFFFF" />
 
         <Button
+            android:id="@+id/saveNewProductButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="Zapisz"
             android:layout_marginEnd="10dp"
-            android:id="@+id/saveNewProductButton"/>
+            android:background="@drawable/oval_button"
+            android:text="Zapisz"
+            android:textColor="#FFFFFF" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="vertical"
-        android:layout_below="@id/actionBarLayout"
-        android:id="@+id/textsRelativeLayout">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actionBarLayout">
 
         <RelativeLayout
-            android:id="@+id/first"
+            android:id="@+id/textsRelativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_below="@id/actionBarLayout"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/foodProductNameTextView"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/first"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/product_name"
-                android:textSize="22dp" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/foodProductNameEditText"
-                android:layout_width="75dp"
+                <TextView
+                    android:id="@+id/foodProductNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_name"
+                    android:textSize="22dp" />
+
+                <EditText
+                    android:id="@+id/foodProductNameEditText"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="50dp"
+                    android:inputType="text" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/second"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="text"/>
+                android:layout_below="@id/first"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/foodProductBrandTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_brand"
+                    android:textSize="22dp" />
+
+                <EditText
+                    android:id="@+id/foodProductBrandEditText"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="50dp"
+                    android:inputType="text" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/third"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/second"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/foodProductEnergyValueTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_energy_value"
+                    android:textSize="22dp" />
+
+                <EditText
+                    android:id="@+id/foodProductEnergyValueEditText"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="75dp"
+                    android:inputType="numberDecimal" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/fourth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/third"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/foodProductFatsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_fats"
+                    android:textSize="22dp" />
+
+                <EditText
+                    android:id="@+id/foodProductFatsEditText"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="75dp"
+                    android:inputType="numberDecimal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fifth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fourth"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/foodProductSaturatedFatsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_saturated_fats"
+                    android:textSize="22dp"
+                    android:layout_marginStart="20dp"/>
+
+                <EditText
+                    android:id="@+id/foodProductSaturatedFatsEditText"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="75dp"
+                    android:inputType="numberDecimal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sixth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fifth"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/foodProductCarbohydratesTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_carbohydrates"
+                    android:textSize="22dp" />
+
+                <EditText
+                    android:id="@+id/foodProductCarbohydratesEditText"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="75dp"
+                    android:inputType="numberDecimal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/seventh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sixth"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/foodProductSugarsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_sugars"
+                    android:textSize="22dp"
+                    android:layout_marginStart="20dp"/>
+
+                <EditText
+                    android:id="@+id/foodProductSugarsEditText"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="75dp"
+                    android:inputType="numberDecimal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/eighth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/seventh"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/foodProductProteinsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_proteins"
+                    android:textSize="22dp" />
+
+                <EditText
+                    android:id="@+id/foodProductProteinsEditText"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="75dp"
+                    android:inputType="numberDecimal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ninth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/eighth"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/foodProductSaltTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/product_salt"
+                    android:textSize="22dp" />
+
+                <EditText
+                    android:id="@+id/foodProductSaltEditText"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="75dp"
+                    android:inputType="numberDecimal" />
+
+            </RelativeLayout>
         </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/second"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/first"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/foodProductBrandTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/product_brand"
-                android:textSize="22dp" />
-
-            <EditText
-                android:id="@+id/foodProductBrandEditText"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="text"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/third"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/second"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/foodProductEnergyValueTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/product_energy_value"
-                android:textSize="22dp" />
-
-            <EditText
-                android:id="@+id/foodProductEnergyValueEditText"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/fourth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/third"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/foodProductFatsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/product_fats"
-                android:textSize="22dp" />
-
-            <EditText
-                android:id="@+id/foodProductFatsEditText"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/fifth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fourth"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/foodProductSaturatedFatsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/product_saturated_fats"
-                android:textSize="22dp" />
-
-            <EditText
-                android:id="@+id/foodProductSaturatedFatsEditText"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/sixth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fifth"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/foodProductCarbohydratesTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/product_carbohydrates"
-                android:textSize="22dp" />
-
-            <EditText
-                android:id="@+id/foodProductCarbohydratesEditText"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/seventh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/sixth"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/foodProductSugarsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/product_sugars"
-                android:textSize="22dp" />
-
-            <EditText
-                android:id="@+id/foodProductSugarsEditText"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/eighth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/seventh"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/foodProductProteinsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/product_proteins"
-                android:textSize="22dp" />
-
-            <EditText
-                android:id="@+id/foodProductProteinsEditText"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/ninth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/eighth"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/foodProductSaltTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/product_salt"
-                android:textSize="22dp" />
-
-            <EditText
-                android:id="@+id/foodProductSaltEditText"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="75dp"
-                android:inputType="numberDecimal"/>
-
-        </RelativeLayout>
-    </RelativeLayout>
-    
+    </ScrollView>
 
 
 </RelativeLayout>

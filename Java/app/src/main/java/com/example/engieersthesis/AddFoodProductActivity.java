@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -32,17 +33,22 @@ public class AddFoodProductActivity extends AppCompatActivity {
     private EditText foodSearchEditText;
     private VolleyService volleyService;
     private Button addNewFoodProductButton;
+    private ListView listView;
+    private String mealName;
+    private String mealDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food_product);
 
-        String mealName = getIntent().getStringExtra("mealName");
+        mealName = getIntent().getStringExtra(Consts.MEAL_TYPE_INTENT_EXTRA);
+        mealDate = getIntent().getStringExtra(Consts.MEAL_DATE_INTENT_EXTRA);
 
         mealNameTextView = findViewById(R.id.mealNameTextView);
         foodSearchEditText = findViewById(R.id.foodSearchEditText);
         addNewFoodProductButton = findViewById(R.id.addNewFoodProductButton);
+        listView = findViewById(R.id.foodProductsListView);
 
         mealNameTextView.setText(mealName);
 
@@ -74,6 +80,7 @@ public class AddFoodProductActivity extends AppCompatActivity {
                 startActivity(addNewFoodProductIntent);
             }
         });
+
     }
 
     private void searchProductInDatabase(String foodToSearch) {
@@ -81,7 +88,7 @@ public class AddFoodProductActivity extends AppCompatActivity {
                 Consts.API_QUERY_PARAM_TO_SEARCH_FOOD_BY_NAME_ENDPOINT + foodToSearch;
         Log.d("URL: ", urlWithFoodToSearchAsQueryParam);
 
-        volleyService.getDataVolleyRequest("GETCALL", urlWithFoodToSearchAsQueryParam);
+        volleyService.getDataVolleyRequest(Consts.GET_METHOD, urlWithFoodToSearchAsQueryParam);
     }
 
     void initVolleyCallback() {
@@ -89,15 +96,26 @@ public class AddFoodProductActivity extends AppCompatActivity {
             @Override
             public void notifySuccess(String requestType, JSONArray response) {
                 Log.d("ResponseJSONARRAY:", response.toString());
-                ArrayList<JSONObject> listItems = JSONUtilities.getArrayListFromJSONARRAY(response);
-
-                ListView listView = findViewById(R.id.foodProductsListView);
+                final ArrayList<JSONObject> listItems = JSONUtilities.getArrayListFromJSONARRAY(response);
 
                 ListAdapter adapter = new com.example.engieersthesis.adapers.ListAdapter(AddFoodProductActivity.this,
                         R.layout.food_products_list_view, R.id.foodProductNameTextView, listItems);
 
                 listView.setAdapter(adapter);
 
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int postion, long id) {
+                        Object listItem = parent.getItemAtPosition(postion);
+                        if (listItem != null) {
+                            Intent addFoodProductDetailedIntent = new Intent(AddFoodProductActivity.this, AddFoodProductDetailedActivity.class);
+                            addFoodProductDetailedIntent.putExtra(Consts.JSON_STRING_FOOD_ID, listItem.toString());
+                            addFoodProductDetailedIntent.putExtra(Consts.MEAL_TYPE_TO_JSON_REQUEST, getMealType());
+                            addFoodProductDetailedIntent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, mealDate);
+                            startActivity(addFoodProductDetailedIntent);
+                        }
+                    }
+                });
             }
 
             @Override
@@ -110,6 +128,21 @@ public class AddFoodProductActivity extends AppCompatActivity {
                 Log.d("Response:", error.toString());
             }
         };
+    }
+
+    private String getMealType() {
+        switch (mealName) {
+            case Consts.BREAKFAST_PL:
+                return Consts.BREAKFAST_EN;
+            case Consts.BRUNCH_PL:
+                return Consts.BRUNCH_EN;
+            case Consts.DINNER_PL:
+                return Consts.DINNER_EN;
+            case Consts.SUPPER_PL:
+                return Consts.SUPPER_EN;
+        }
+
+        return "";
     }
 
 

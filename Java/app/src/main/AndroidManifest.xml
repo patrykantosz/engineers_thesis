@@ -11,27 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".AddFoodProductDetailedActivity"></activity>
         <activity
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:name=".AddNewFoodProductActivity"/>
+            android:name=".AddNewFoodProductActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:name=".AddFoodProductActivity" />
+            android:name=".AddFoodProductActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name=".UserMainScreenActivity"
             android:label="@string/title_activity_user_main_screen"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:name=".RegisterActivity" />
+            android:name=".RegisterActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:name=".LogInActivity" />
+            android:name=".LogInActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:name=".MainActivity">
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

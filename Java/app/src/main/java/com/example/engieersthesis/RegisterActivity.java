@@ -8,15 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.ClientError;
 import com.android.volley.VolleyError;
 import com.example.engieersthesis.Interfaces.IResult;
+import com.example.engieersthesis.requests.VolleyService;
 import com.example.engieersthesis.utility.Consts;
 import com.example.engieersthesis.utility.JSONBuilder;
 import com.example.engieersthesis.utility.SharedPreferencesSaver;
-import com.example.engieersthesis.requests.VolleyService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,8 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 registerButton.setEnabled(false);
                 registerAndGetToken();
-                Intent userMainScreenIntent = new Intent(RegisterActivity.this, UserMainScreenActivity.class);
-                startActivity(userMainScreenIntent);
             }
         });
     }
@@ -99,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.d("ResponseJSONOBJECT: ", response.toString());
                 SharedPreferences sharedPreferences = getSharedPreferences(Consts.TOKEN_FILE, MODE_PRIVATE);
                 progressBar.setVisibility(View.GONE);
+                createIntentForNextActivity();
                 registerButton.setEnabled(true);
                 try {
                     String token = response.getString(Consts.TOKEN_KEY);
@@ -110,8 +111,37 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
+                handleResponseErrors(error); //TODO Check if editexts are empty
                 Log.d("Response:", error.toString());
             }
         };
+    }
+
+    private void handleResponseErrors(VolleyError error) {
+        if (error instanceof ClientError) { //TODO Add support for other types of errors
+            progressBar.setVisibility(View.GONE);
+            registerButton.setEnabled(true);
+            handleClientError();
+        }
+    }
+
+    private void handleClientError() {
+        loginEditText.setBackgroundResource(R.drawable.error_edit_text);
+        emailEditText.setBackgroundResource(R.drawable.error_edit_text);
+        passwordEditText.setBackgroundResource(R.drawable.error_edit_text);
+        loginEditText.setEnabled(true);
+        emailEditText.setEnabled(true);
+        passwordEditText.setEnabled(true);
+        loginEditText.setText("");
+        emailEditText.setText("");
+        passwordEditText.setText("");
+        Toast.makeText(RegisterActivity.this, Consts.WRONG_REGISTER_CREDENTIALS_MSG_PL, Toast.LENGTH_SHORT).show();
+    }
+
+    private void createIntentForNextActivity() {
+        Log.d("SIUSIAK", "STWORZYŁ");
+        Intent userMainScreenIntent = new Intent(RegisterActivity.this, UserMainScreenActivity.class);
+        userMainScreenIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(userMainScreenIntent);
     }
 }
