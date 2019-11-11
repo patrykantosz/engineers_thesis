@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddFoodProductDetailedActivity"></activity>
+        <activity android:name=".NutritionsTargetActivity"></activity>
+        <activity android:name=".BodyParametersActivity" />
+        <activity android:name=".AddFoodProductDetailedActivity" />
         <activity
             android:name=".AddNewFoodProductActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.engieersthesis.R;
 import com.example.engieersthesis.utility.Consts;
+import com.example.engieersthesis.utility.DoubleRounder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,10 +48,10 @@ public class FoodListAdapter extends ArrayAdapter<JSONObject> {
         try {
             foodValuesMultiplier = (Double.parseDouble(list.get(position).getString(Consts.FOOD_PRODUCT_WEIGHT)) / Consts.DEFAULT_MASS_DIV);
 
-            double caloriesValueInDouble = list.get(position).getDouble(Consts.FOOD_PRODUCT_ENERGY_VALUE) * foodValuesMultiplier;
-            double proteinsValueInDouble = list.get(position).getDouble(Consts.FOOD_PRODUCT_PROTEINS) * foodValuesMultiplier;
-            double fatsValueInDouble = list.get(position).getDouble(Consts.FOOD_PRODUCT_FATS) * foodValuesMultiplier;
-            double carbohydratesValueInDouble = list.get(position).getDouble(Consts.FOOD_PRODUCT_CARBOHYDRATES) * foodValuesMultiplier;
+            double caloriesValueInDouble = DoubleRounder.roundDouble(list.get(position).getDouble(Consts.FOOD_PRODUCT_ENERGY_VALUE) * foodValuesMultiplier, 0);
+            double proteinsValueInDouble = DoubleRounder.roundDouble(list.get(position).getDouble(Consts.FOOD_PRODUCT_PROTEINS) * foodValuesMultiplier, 2);
+            double fatsValueInDouble = DoubleRounder.roundDouble(list.get(position).getDouble(Consts.FOOD_PRODUCT_FATS) * foodValuesMultiplier, 2);
+            double carbohydratesValueInDouble = DoubleRounder.roundDouble(list.get(position).getDouble(Consts.FOOD_PRODUCT_CARBOHYDRATES) * foodValuesMultiplier, 2);
 
             String nameToTextView = list.get(position).getString(Consts.FOOD_PRODUCT_NAME) + " (" + list.get(position).getString(Consts.FOOD_PRODUCT_BRAND) + ")";
             String weightToTextView = list.get(position).getString(Consts.FOOD_PRODUCT_WEIGHT) + "g";

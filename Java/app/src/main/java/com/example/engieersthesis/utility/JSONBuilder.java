@@ -20,6 +20,14 @@ public class JSONBuilder extends JSONObject {
         }
     }
 
+    public void addNextLine(String key, int value) {
+        try {
+            this.put(key, value);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public JSONBuilder getJson() {
         return this;
     }

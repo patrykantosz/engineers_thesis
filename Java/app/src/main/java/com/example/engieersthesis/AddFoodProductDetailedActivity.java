@@ -313,6 +313,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
     private void goBackToUserMainActivity() {
         Intent userMainActivityIntent = new Intent(AddFoodProductDetailedActivity.this, UserMainScreenActivity.class);
         userMainActivityIntent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, mealDate);
+        userMainActivityIntent.putExtra("REFRESH", true);
         userMainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(userMainActivityIntent);
     }

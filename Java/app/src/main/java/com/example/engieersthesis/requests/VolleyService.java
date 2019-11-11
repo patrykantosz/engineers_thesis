@@ -36,6 +36,7 @@ public class VolleyService {
     }
 
     public void setmResultCallback(IResult mResultCallback) {
+        Log.d("CHANGEG", "BEFORE: " + this.mResultCallback.toString() + " AFTER " + mResultCallback.toString());
         this.mResultCallback = mResultCallback;
     }
 
@@ -90,6 +91,36 @@ public class VolleyService {
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences(Consts.TOKEN_FILE, Context.MODE_PRIVATE);
                 String token = sharedPreferences.getString(Consts.TOKEN_KEY, "");
                 Log.d("getHeadersPATCH", token);
+                params.put(Consts.CONTENT_TYPE, Consts.CONTENT_TYPE_APPLICATION_JSON_UTF8);
+                params.put("Authorization", "Token " + token);
+                return params;
+            }
+        };
+
+        queue.add(jsonObj);
+    }
+
+    public void putDataVolleyRequest(final String requestType, String urlToPutEndpoint, JSONObject jsonRequest) {
+        queue = Volley.newRequestQueue(mContext);
+        jsonObj = new JsonObjectRequest(Request.Method.PUT, urlToPutEndpoint, jsonRequest, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (mResultCallback != null)
+                    mResultCallback.notifySuccess(requestType, response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (mResultCallback != null)
+                    mResultCallback.notifyError(requestType, error);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                SharedPreferences sharedPreferences = mContext.getSharedPreferences(Consts.TOKEN_FILE, Context.MODE_PRIVATE);
+                String token = sharedPreferences.getString(Consts.TOKEN_KEY, "");
+                Log.d("getHeadersPUT", token);
                 params.put(Consts.CONTENT_TYPE, Consts.CONTENT_TYPE_APPLICATION_JSON_UTF8);
                 params.put("Authorization", "Token " + token);
                 return params;

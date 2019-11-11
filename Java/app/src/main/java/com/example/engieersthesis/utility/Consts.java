@@ -11,12 +11,15 @@ public class Consts {
     public static final String API_DELETE_FOOD_FROM_USER_HISTORY_ENDPOINT = "https://backendforthesis.herokuapp.com/api/auth/meal/delete";
     public static final String API_ADD_NEW_PRODUCT_TO_MEAL_ENDPOINT = "https://backendforthesis.herokuapp.com/api/auth/meal";
     public static final String API_UPDATE_FOOD_WEIGHT_ENDPOINT = "https://backendforthesis.herokuapp.com/api/auth/food_details/update";
+    public static final String API_USER_BODY_PARAMETERS_ENDPOINT = "https://backendforthesis.herokuapp.com/api/auth/parameters";
+    public static final String API_USER_NUTRITIONS_TARGET_ENDPOINT = "https://backendforthesis.herokuapp.com/api/auth/targets";
     public static final String API_QUERY_PARAM_TO_SEARCH_FOOD_BY_NAME_ENDPOINT = "?food_name=";
     public static final String API_QUERY_PARAM_TO_DETETE_FOOD_FROM_USER_HISTORY = "?food_details_id=";
     public static final String POST_METHOD = "POST";
     public static final String GET_METHOD = "GET";
     public static final String DELETE_METHOD = "DELETE";
     public static final String PATCH_METHOD = "PATCH";
+    public static final String PUT_METHOD = "PUT";
     public static final String TOKEN_KEY = "token";
     public static final String CONTENT_TYPE = "Content-Type";
     public static final String CONTENT_TYPE_APPLICATION_JSON_UTF8 = "application/json; UTF-8";
@@ -36,6 +39,14 @@ public class Consts {
     public static final String MEAL_DATE = "meal_date";
     public static final String MEAL_TYPE = "meal_type";
     public static final String FOOD_PRODUCT_ID = "food_id";
+    public static final String USER_WEIGHT = "user_weight";
+    public static final String USER_HEIGHT = "user_height";
+    public static final String USER_BMI = "user_bmi";
+    public static final String USER_TARGET_CALORIES = "target_calories";
+    public static final String USER_TARGET_CARBOHYDRATES = "target_carbohydrates";
+    public static final String USER_TARGET_PROTEINS = "target_proteins";
+    public static final String USER_TARGET_FATS = "target_fats";
+
 
     public static final String JSON_STRING_FOOD_ID = "foodStringJson";
 
@@ -69,7 +80,15 @@ public class Consts {
     public static final String FOOD_PRODUCT_DELETE_FAILURE_MSG_PL = "Nie udało się usunąć produktu, spróbuj ponownie";
     public static final String FOOD_PRODUCT_UPDATE_SUCCESS_MSG_PL = "Produkt został edytowany";
     public static final String FOOD_PRODUCT_UPDATE_FAILURE_MSG_PL = "Nie udało się edytować produktu, spróbuj ponownie";
+    public static final String PUT_BODY_PARAMETERS_SUCCESS_MSG_PL = "Parametry Twojego ciała zostały zapisane";
+    public static final String PUT_BODY_PARAMETERS_FAILURE_MSG_PL = "Nie udało się zapisać parametrów Twojego ciała, spróbuj ponownie";
+    public static final String PUT_NUTRITIONS_TARGET_SUCCESS_MSG_PL = "Twój cel żywieniowy został zapisany";
+    public static final String PUT_NUTRITUONS_TARGET_SUCCESS_MSG_PL = "Nie udało się zapisać Twojego celu żywieniowego, spróbuj ponownie";
 
     public static final double DEFAULT_MASS_DIV = 100;
+
+    public static final int PROTEIN_CALORIES = 4;
+    public static final int CARBOHYDRATE_CALORIES = 4;
+    public static final int FAT_CALORIES = 9;
 
 }
