@@ -2,6 +2,7 @@ package com.example.engieersthesis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -210,15 +211,18 @@ public class BodyParametersActivity extends AppCompatActivity {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("JsonObjectResponse", response.toString());
-                Toast.makeText(BodyParametersActivity.this, Consts.PUT_BODY_PARAMETERS_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
+                Toast.makeText(BodyParametersActivity.this, Consts.PUT_BODY_PARAMETERS_SUCCESS_MSG_ENG, Toast.LENGTH_SHORT).show();
                 volleyService.setmResultCallback(mResultCallback);
-                finish();
+                Intent userMainScreenIntent = new Intent(BodyParametersActivity.this, UserMainScreenActivity.class);
+                userMainScreenIntent.putExtra("REFRESH", true);
+                userMainScreenIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(userMainScreenIntent);
             }
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("ErrorResponse", error.toString());
-                Toast.makeText(BodyParametersActivity.this, Consts.PUT_BODY_PARAMETERS_FAILURE_MSG_PL, Toast.LENGTH_SHORT).show();
+                Toast.makeText(BodyParametersActivity.this, Consts.PUT_BODY_PARAMETERS_FAILURE_MSG_ENG, Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -248,6 +252,6 @@ public class BodyParametersActivity extends AppCompatActivity {
 
     private void redBordersAroundEmptyEditText(EditText emptyEditText) {
         emptyEditText.setBackgroundResource(R.drawable.error_edit_text);
-        Toast.makeText(BodyParametersActivity.this, Consts.ADD_NEW_FOOD_EMPTY_FIELDS_MSG_PL, Toast.LENGTH_SHORT).show();
+        Toast.makeText(BodyParametersActivity.this, Consts.ADD_NEW_FOOD_EMPTY_FIELDS_MSG_ENG, Toast.LENGTH_SHORT).show();
     }
 }

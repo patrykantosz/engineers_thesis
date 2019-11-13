@@ -20,7 +20,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="10dp"
             android:background="@drawable/oval_button"
-            android:text="Powrót"
+            android:text="Back"
             android:textColor="#FFFFFF" />
 
         <Button
@@ -30,7 +30,7 @@
             android:layout_centerInParent="true"
             android:layout_marginEnd="10dp"
             android:background="@drawable/oval_button"
-            android:text="Usuń"
+            android:text="Delete"
             android:visibility="invisible"
             android:clickable="false"
             android:textColor="#FFFFFF" />
@@ -42,7 +42,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:background="@drawable/oval_button"
-            android:text="Zapisz"
+            android:text="Save"
             android:textColor="#FFFFFF" />
     </RelativeLayout>
 

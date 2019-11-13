@@ -93,7 +93,6 @@ public class UserMainScreenActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         if(volleyService != null && refreshIsNeeded) {
-            Log.d("POJEBAL", "TAK");
             getUserFoodHistory();
         }
     }
@@ -125,7 +124,7 @@ public class UserMainScreenActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent addFoodProductIntent = new Intent(UserMainScreenActivity.this, AddFoodProductActivity.class);
-                addFoodProductIntent.putExtra(Consts.MEAL_TYPE_INTENT_EXTRA, Consts.BREAKFAST_PL);
+                addFoodProductIntent.putExtra(Consts.MEAL_TYPE_INTENT_EXTRA, Consts.BREAKFAST_EN);
                 addFoodProductIntent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, calendarTextView.getText());
                 startActivity(addFoodProductIntent);
             }
@@ -135,7 +134,7 @@ public class UserMainScreenActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent addFoodProductIntent = new Intent(UserMainScreenActivity.this, AddFoodProductActivity.class);
-                addFoodProductIntent.putExtra(Consts.MEAL_TYPE_INTENT_EXTRA, Consts.BRUNCH_PL);
+                addFoodProductIntent.putExtra(Consts.MEAL_TYPE_INTENT_EXTRA, Consts.BRUNCH_EN);
                 addFoodProductIntent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, calendarTextView.getText());
                 startActivity(addFoodProductIntent);
             }
@@ -145,7 +144,7 @@ public class UserMainScreenActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent addFoodProductIntent = new Intent(UserMainScreenActivity.this, AddFoodProductActivity.class);
-                addFoodProductIntent.putExtra(Consts.MEAL_TYPE_INTENT_EXTRA, Consts.DINNER_PL);
+                addFoodProductIntent.putExtra(Consts.MEAL_TYPE_INTENT_EXTRA, Consts.DINNER_EN);
                 addFoodProductIntent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, calendarTextView.getText());
                 startActivity(addFoodProductIntent);
             }
@@ -155,7 +154,7 @@ public class UserMainScreenActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent addFoodProductIntent = new Intent(UserMainScreenActivity.this, AddFoodProductActivity.class);
-                addFoodProductIntent.putExtra(Consts.MEAL_TYPE_INTENT_EXTRA, Consts.SUPPER_PL);
+                addFoodProductIntent.putExtra(Consts.MEAL_TYPE_INTENT_EXTRA, Consts.SUPPER_EN);
                 addFoodProductIntent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, calendarTextView.getText());
                 startActivity(addFoodProductIntent);
             }
@@ -185,7 +184,6 @@ public class UserMainScreenActivity extends AppCompatActivity
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateFromOtherActivity = getIntent().getStringExtra(Consts.MEAL_DATE_INTENT_EXTRA);
         refreshIsNeeded = getIntent().getBooleanExtra("REFRESH",false);
-        Log.d("REFRESHISNEEDED", String.valueOf(refreshIsNeeded));
         if (dateFromOtherActivity != null) {
             calendarTextView.setText(dateFromOtherActivity);
             getIntent().removeExtra(Consts.MEAL_DATE_INTENT_EXTRA);
@@ -222,9 +220,6 @@ public class UserMainScreenActivity extends AppCompatActivity
                     fillUserFoodHistoryListViews(mealArrayList);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                } finally {
-                    volleyService.setmResultCallback(mResultCallback);
-                    fillTextViewsWithUserNutritionsTargets();
                 }
                 volleyService.setmResultCallback(mResultCallback);
                 fillTextViewsWithUserNutritionsTargets();
@@ -235,7 +230,6 @@ public class UserMainScreenActivity extends AppCompatActivity
                 Log.d("Response", error.toString());
             }
         };
-        Log.d("USER", "Poszlo");
 
         volleyService.setmResultCallback(resultCalback);
         volleyService.getDataVolleyRequest(Consts.GET_METHOD, Consts.API_USER_FOOD_HISTORY_LIST_ENDPOINT);
@@ -377,7 +371,6 @@ public class UserMainScreenActivity extends AppCompatActivity
                 Log.d("ErrorResponse1", error.toString());
             }
         };
-        Log.d("TARGET", "POSZLO");
 
         volleyService.setmResultCallback(getNutritionsTargetCallback);
         volleyService.getDataVolleyRequest(Consts.GET_METHOD, Consts.API_USER_NUTRITIONS_TARGET_ENDPOINT);
@@ -478,13 +471,6 @@ public class UserMainScreenActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.user_main_screen, menu);
-        return true;
     }
 
     @Override

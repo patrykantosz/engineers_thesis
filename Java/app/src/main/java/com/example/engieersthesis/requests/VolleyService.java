@@ -36,7 +36,6 @@ public class VolleyService {
     }
 
     public void setmResultCallback(IResult mResultCallback) {
-        Log.d("CHANGEG", "BEFORE: " + this.mResultCallback.toString() + " AFTER " + mResultCallback.toString());
         this.mResultCallback = mResultCallback;
     }
 

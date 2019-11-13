@@ -2,6 +2,7 @@ package com.example.engieersthesis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -243,7 +244,7 @@ public class NutritionsTargetActivity extends AppCompatActivity {
 
     private void redBordersAroundEmptyEditText(EditText emptyEditText){
         emptyEditText.setBackgroundResource(R.drawable.error_edit_text);
-        Toast.makeText(NutritionsTargetActivity.this, Consts.ADD_NEW_FOOD_EMPTY_FIELDS_MSG_PL, Toast.LENGTH_SHORT).show();
+        Toast.makeText(NutritionsTargetActivity.this, Consts.ADD_NEW_FOOD_EMPTY_FIELDS_MSG_ENG, Toast.LENGTH_SHORT).show();
     }
 
     private void saveNutritionsTarget() {
@@ -256,15 +257,18 @@ public class NutritionsTargetActivity extends AppCompatActivity {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("JsonObjectResponse", response.toString());
-                Toast.makeText(NutritionsTargetActivity.this, Consts.PUT_NUTRITIONS_TARGET_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
+                Toast.makeText(NutritionsTargetActivity.this, Consts.PUT_NUTRITIONS_TARGET_SUCCESS_MSG_ENG, Toast.LENGTH_SHORT).show();
                 volleyService.setmResultCallback(mResultCallback);
-                finish();
+                Intent userMainScreenIntent = new Intent(NutritionsTargetActivity.this, UserMainScreenActivity.class);
+                userMainScreenIntent.putExtra("REFRESH", true);
+                userMainScreenIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(userMainScreenIntent);
             }
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("ErrorResponse", error.toString());
-                Toast.makeText(NutritionsTargetActivity.this, Consts.PUT_NUTRITUONS_TARGET_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
+                Toast.makeText(NutritionsTargetActivity.this, Consts.PUT_NUTRITUONS_TARGET_SUCCESS_MSG_ENG, Toast.LENGTH_SHORT).show();
             }
         };
 

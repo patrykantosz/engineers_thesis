@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchFoodByPhotoActivity">
+
+    <RelativeLayout
+        android:id="@+id/actionBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/backToPreviousActivityButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/oval_button"
+            android:text="Back"
+            android:textColor="#FFFFFF" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/actionBarLayout">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Below is list of objects recognized on the photo. Please choose which you want to add."
+            android:textSize="20dp"
+            android:id="@+id/infoTextView"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/infoTextView"
+            android:background="@drawable/normal_edit_text"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/labelsListView"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Findings in database for chosen object:"
+            android:layout_below="@id/labelsListView"
+            android:id="@+id/infoChosenTextView"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@id/infoChosenTextView"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/normal_edit_text"
+            android:id="@+id/resultsListView"/>
+    </RelativeLayout>
+
+</RelativeLayout>

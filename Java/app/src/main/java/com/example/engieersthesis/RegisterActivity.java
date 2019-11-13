@@ -135,11 +135,10 @@ public class RegisterActivity extends AppCompatActivity {
         loginEditText.setText("");
         emailEditText.setText("");
         passwordEditText.setText("");
-        Toast.makeText(RegisterActivity.this, Consts.WRONG_REGISTER_CREDENTIALS_MSG_PL, Toast.LENGTH_SHORT).show();
+        Toast.makeText(RegisterActivity.this, Consts.WRONG_REGISTER_CREDENTIALS_MSG_ENG, Toast.LENGTH_SHORT).show();
     }
 
     private void createIntentForNextActivity() {
-        Log.d("SIUSIAK", "STWORZYŁ");
         Intent userMainScreenIntent = new Intent(RegisterActivity.this, UserMainScreenActivity.class);
         userMainScreenIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(userMainScreenIntent);
