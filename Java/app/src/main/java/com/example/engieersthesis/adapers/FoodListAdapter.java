@@ -52,9 +52,10 @@ public class FoodListAdapter extends ArrayAdapter<JSONObject> {
             double proteinsValueInDouble = DoubleRounder.roundDouble(list.get(position).getDouble(Consts.FOOD_PRODUCT_PROTEINS) * foodValuesMultiplier, 2);
             double fatsValueInDouble = DoubleRounder.roundDouble(list.get(position).getDouble(Consts.FOOD_PRODUCT_FATS) * foodValuesMultiplier, 2);
             double carbohydratesValueInDouble = DoubleRounder.roundDouble(list.get(position).getDouble(Consts.FOOD_PRODUCT_CARBOHYDRATES) * foodValuesMultiplier, 2);
+            double weight = DoubleRounder.roundDouble(list.get(position).getDouble(Consts.FOOD_PRODUCT_WEIGHT), 2);
 
             String nameToTextView = list.get(position).getString(Consts.FOOD_PRODUCT_NAME) + " (" + list.get(position).getString(Consts.FOOD_PRODUCT_BRAND) + ")";
-            String weightToTextView = list.get(position).getString(Consts.FOOD_PRODUCT_WEIGHT) + "g";
+            String weightToTextView = weight + "g";//list.get(position).getString(Consts.FOOD_PRODUCT_WEIGHT) + "g";
             String caloriesToTextView = caloriesValueInDouble + "kcal";
             String proteinsToTextView = proteinsValueInDouble + "g";
             String fatsToTextView = fatsValueInDouble + "g";

@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.example.engieersthesis.Interfaces.IResult;
 import com.example.engieersthesis.requests.VolleyService;
 import com.example.engieersthesis.utility.Consts;
+import com.example.engieersthesis.utility.DoubleRounder;
 import com.example.engieersthesis.utility.JSONBuilder;
 
 import org.json.JSONArray;
@@ -157,6 +158,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
         addFoodProductToHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                addFoodProductToHistoryButton.setEnabled(false);
                 if (!isInEditMode)
                     addProductToUserHistory();
                 else
@@ -217,6 +219,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("ResponseJSONObjectADD", response.toString());
+                addFoodProductToHistoryButton.setEnabled(true);
                 if(getIntent().getBooleanExtra(Consts.MULTIPLE_ADD, false))
                     finish();
                 else
@@ -225,6 +228,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
+                addFoodProductToHistoryButton.setEnabled(true);
                 Log.d("ResponseADD", error.toString());
             }
         };
@@ -256,6 +260,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
     }
 
     private void getFoodDetails() {
+        Log.d("STRING", foodJson.toString());
         try {
             foodName = foodJson.getString(Consts.FOOD_PRODUCT_NAME);
             foodBrand = foodJson.getString(Consts.FOOD_PRODUCT_BRAND);
@@ -269,6 +274,16 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
             sugarsValue = foodJson.getDouble(Consts.FOOD_PRODUCT_SUGARS);
             proteinsValue = foodJson.getDouble(Consts.FOOD_PRODUCT_PROTEINS);
             saltValue = foodJson.getDouble(Consts.FOOD_PRODUCT_SALT);
+            if(isInEditMode){
+                double multiplier = foodJson.getDouble(Consts.FOOD_PRODUCT_WEIGHT) / 100;
+                energyValueValueTextView.setText(Double.toString(DoubleRounder.roundDouble(energyValue * multiplier, 2)));
+                fatsValueTextView.setText(Double.toString(DoubleRounder.roundDouble(fatsValue * multiplier, 2)));
+                saturatedFatsValueTextView.setText(Double.toString(DoubleRounder.roundDouble(saturatedFatsValue * multiplier, 2)));
+                carbohydratesValueTextView.setText(Double.toString(DoubleRounder.roundDouble(carbohydratesValue * multiplier, 2)));
+                sugarValueTextView.setText(Double.toString(DoubleRounder.roundDouble(sugarsValue * multiplier, 2)));
+                proteinValueTextView.setText(Double.toString(DoubleRounder.roundDouble(proteinsValue * multiplier, 2)));
+                saltValueTextView.setText(Double.toString(DoubleRounder.roundDouble(saltValue * multiplier, 2)));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -276,13 +291,13 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
 
     private void fillTextViews() {
         if (isWeightEditTextEmpty == false) {
-            energyValueValueTextView.setText(Double.toString(energyValue * foodValuesMultiplier));
-            fatsValueTextView.setText(Double.toString(fatsValue * foodValuesMultiplier));
-            saturatedFatsValueTextView.setText(Double.toString(saturatedFatsValue * foodValuesMultiplier));
-            carbohydratesValueTextView.setText(Double.toString(carbohydratesValue * foodValuesMultiplier));
-            sugarValueTextView.setText(Double.toString(sugarsValue * foodValuesMultiplier));
-            proteinValueTextView.setText(Double.toString(proteinsValue * foodValuesMultiplier));
-            saltValueTextView.setText(Double.toString(saltValue * foodValuesMultiplier));
+            energyValueValueTextView.setText(Double.toString(DoubleRounder.roundDouble(energyValue * foodValuesMultiplier, 2)));
+            fatsValueTextView.setText(Double.toString(DoubleRounder.roundDouble(fatsValue * foodValuesMultiplier, 2)));
+            saturatedFatsValueTextView.setText(Double.toString(DoubleRounder.roundDouble(saturatedFatsValue * foodValuesMultiplier, 2)));
+            carbohydratesValueTextView.setText(Double.toString(DoubleRounder.roundDouble(carbohydratesValue * foodValuesMultiplier, 2)));
+            sugarValueTextView.setText(Double.toString(DoubleRounder.roundDouble(sugarsValue * foodValuesMultiplier, 2)));
+            proteinValueTextView.setText(Double.toString(DoubleRounder.roundDouble(proteinsValue * foodValuesMultiplier, 2)));
+            saltValueTextView.setText(Double.toString(DoubleRounder.roundDouble(saltValue * foodValuesMultiplier, 2)));
         } else {
             energyValueValueTextView.setText("");
             fatsValueTextView.setText("");
@@ -324,7 +339,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
     private void addFoodWeightToEditText() {
         try {
             foodWeight = foodJson.getString(Consts.FOOD_PRODUCT_WEIGHT);
-            productWeightEditText.setText(foodWeight);
+            productWeightEditText.setText(Double.toString(DoubleRounder.roundDouble(Double.parseDouble(foodWeight), 2)));
         } catch (JSONException e) {
             e.printStackTrace();
         }
