@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -92,7 +91,7 @@ public class UserMainScreenActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        if(volleyService != null && refreshIsNeeded) {
+        if (volleyService != null && refreshIsNeeded) {
             getUserFoodHistory();
         }
     }
@@ -183,7 +182,7 @@ public class UserMainScreenActivity extends AppCompatActivity
     private void setCalendarTextView() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateFromOtherActivity = getIntent().getStringExtra(Consts.MEAL_DATE_INTENT_EXTRA);
-        refreshIsNeeded = getIntent().getBooleanExtra("REFRESH",false);
+        refreshIsNeeded = getIntent().getBooleanExtra("REFRESH", false);
         if (dateFromOtherActivity != null) {
             calendarTextView.setText(dateFromOtherActivity);
             getIntent().removeExtra(Consts.MEAL_DATE_INTENT_EXTRA);
@@ -331,7 +330,7 @@ public class UserMainScreenActivity extends AppCompatActivity
     }
 
     private void addFoodToDailySummary(ArrayList<JSONObject> foodArrayJson) {
-        for(JSONObject foodJson : foodArrayJson) {
+        for (JSONObject foodJson : foodArrayJson) {
             try {
                 double foodWeightMultiplier = DoubleRounder.roundDouble(foodJson.getDouble(Consts.FOOD_PRODUCT_WEIGHT) / Consts.DEFAULT_MASS_DIV, 2);
                 dailyCaloriesValue += DoubleRounder.roundDouble(foodJson.getInt(Consts.FOOD_PRODUCT_ENERGY_VALUE) * foodWeightMultiplier, 0);
@@ -557,10 +556,10 @@ public class UserMainScreenActivity extends AppCompatActivity
         progressBarPercentColor(proteinsProgressBar);
     }
 
-    private void progressBarPercentColor(ProgressBar progressBarToChangeColor){
+    private void progressBarPercentColor(ProgressBar progressBarToChangeColor) {
         int progressPercent = progressBarToChangeColor.getProgress();
         Drawable progressBarDrawable = progressBarToChangeColor.getProgressDrawable().mutate();
-        if(progressPercent < 85) {
+        if (progressPercent < 85) {
             progressBarDrawable.setColorFilter(Color.parseColor("#1EC000"), PorterDuff.Mode.SRC_IN);
         } else if (progressPercent < 100) {
             progressBarDrawable.setColorFilter(Color.parseColor("#FFC107"), PorterDuff.Mode.SRC_IN);

@@ -1,7 +1,5 @@
 package com.example.engieersthesis;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
 import com.example.engieersthesis.Interfaces.IResult;
@@ -81,7 +81,7 @@ public class BodyParametersActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() > 0 && weightEditText.getText().toString().length() > 0)
+                if (charSequence.length() > 0 && weightEditText.getText().toString().length() > 0)
                     calculateUserBmi(Integer.parseInt(weightEditText.getText().toString()), Integer.parseInt(heightEditText.getText().toString()));
             }
 
@@ -99,7 +99,7 @@ public class BodyParametersActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() > 0 && heightEditText.getText().toString().length() > 0)
+                if (charSequence.length() > 0 && heightEditText.getText().toString().length() > 0)
                     calculateUserBmi(Integer.parseInt(weightEditText.getText().toString()), Integer.parseInt(heightEditText.getText().toString()));
             }
 

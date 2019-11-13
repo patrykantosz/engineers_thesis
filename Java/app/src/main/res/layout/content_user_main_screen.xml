@@ -54,58 +54,58 @@
 
 
         <RelativeLayout
+            android:id="@+id/dolna"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/dolna"
             android:layout_below="@id/calendarActionBar">
 
             <ProgressBar
+                android:id="@+id/caloriesProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="87dp"
                 android:layout_height="wrap_content"
-                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_marginStart="30dp"
                 android:max="100"
-                android:progress="100"
-                android:id="@+id/caloriesProgressBar"
-                android:layout_marginStart="30dp"/>
+                android:progress="100" />
 
             <TextView
+                android:id="@+id/caloriesTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/caloriesProgressBar"
                 android:layout_alignStart="@+id/caloriesProgressBar"
                 android:text="@string/calories_string"
-                android:textSize="11dp"
-                android:id="@+id/caloriesTextView"/>
+                android:textSize="11dp" />
 
             <TextView
+                android:id="@+id/dailyCaloriesTextView"
                 android:layout_width="53dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/caloriesProgressBar"
                 android:layout_alignEnd="@+id/caloriesProgressBar"
                 android:layout_toEndOf="@+id/caloriesTextView"
-                android:text=""
                 android:gravity="end"
+                android:text=""
                 android:textSize="11dp"
-                android:textStyle="bold"
-                android:id="@+id/dailyCaloriesTextView"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/targetCaloriesTextView"
                 android:layout_width="87dp"
                 android:layout_height="wrap_content"
-                android:textSize="11dp"
-                android:layout_alignStart="@id/caloriesTextView"
                 android:layout_below="@id/caloriesTextView"
-                android:id="@+id/targetCaloriesTextView"/>
+                android:layout_alignStart="@id/caloriesTextView"
+                android:textSize="11dp" />
 
             <ProgressBar
+                android:id="@+id/carbosProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="87dp"
                 android:layout_height="wrap_content"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_toEndOf="@+id/fatsProgressBar"
                 android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/fatsProgressBar"
                 android:max="100"
-                android:id="@+id/carbosProgressBar"
-                android:progress="100"/>
+                android:progress="100" />
 
             <TextView
                 android:id="@+id/shortCarbosTextView"
@@ -117,101 +117,101 @@
                 android:textSize="11dp" />
 
             <TextView
+                android:id="@+id/dailyCarbosTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11dp"
-                android:gravity="end"
-                android:textStyle="bold"
                 android:layout_below="@id/carbosProgressBar"
                 android:layout_alignEnd="@id/carbosProgressBar"
                 android:layout_toEndOf="@id/shortCarbosTextView"
-                android:id="@+id/dailyCarbosTextView"/>
+                android:gravity="end"
+                android:textSize="11dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/targetCarbosTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11dp"
                 android:layout_below="@id/shortCarbosTextView"
                 android:layout_alignStart="@id/shortCarbosTextView"
                 android:layout_alignEnd="@id/dailyCarbosTextView"
-                android:id="@+id/targetCarbosTextView"/>
+                android:textSize="11dp" />
 
             <ProgressBar
+                android:id="@+id/fatsProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="87dp"
                 android:layout_height="wrap_content"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:max="100"
-                android:layout_toEndOf="@+id/proteinsProgressBar"
                 android:layout_marginStart="10dp"
-                android:progress="100"
-                android:id="@+id/fatsProgressBar"/>
+                android:layout_toEndOf="@+id/proteinsProgressBar"
+                android:max="100"
+                android:progress="100" />
 
             <TextView
+                android:id="@+id/fatsNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fatsProgressBar"
                 android:layout_alignStart="@+id/fatsProgressBar"
                 android:text="@string/product_fats"
-                android:textSize="11dp"
-                android:id="@+id/fatsNameTextView"/>
+                android:textSize="11dp" />
 
             <TextView
+                android:id="@+id/dailyFatsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11dp"
-                android:gravity="end"
-                android:textStyle="bold"
                 android:layout_below="@id/fatsProgressBar"
                 android:layout_alignEnd="@id/fatsProgressBar"
                 android:layout_toEndOf="@id/fatsNameTextView"
-                android:id="@+id/dailyFatsTextView"/>
+                android:gravity="end"
+                android:textSize="11dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/fatsTargetTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="11dp"
                 android:layout_below="@id/fatsNameTextView"
                 android:layout_alignStart="@id/fatsNameTextView"
                 android:layout_alignEnd="@id/dailyFatsTextView"
-                android:id="@+id/fatsTargetTextView"/>
+                android:textSize="11dp" />
 
             <ProgressBar
-                android:layout_width="87dp"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/caloriesProgressBar"
-                android:layout_marginStart="10dp"
                 android:id="@+id/proteinsProgressBar"
                 style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/caloriesProgressBar"
                 android:max="100"
-                android:progress="100"/>
+                android:progress="100" />
 
             <TextView
+                android:id="@+id/proteinsProgressBarTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/proteinsProgressBar"
                 android:layout_alignStart="@+id/proteinsProgressBar"
                 android:text="@string/product_proteins"
-                android:textSize="11dp"
-                android:id="@+id/proteinsProgressBarTextView"/>
+                android:textSize="11dp" />
 
             <TextView
+                android:id="@+id/dailyProteinsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/proteinsProgressBar"
                 android:layout_alignEnd="@id/proteinsProgressBar"
                 android:layout_toEndOf="@id/proteinsProgressBarTextView"
-                android:textStyle="bold"
-                android:textSize="11dp"
                 android:gravity="end"
-                android:id="@+id/dailyProteinsTextView"/>
+                android:textSize="11dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/proteinsTargetTextView"
                 android:layout_width="87dp"
                 android:layout_height="wrap_content"
-                android:textSize="11dp"
-                android:layout_alignStart="@id/proteinsProgressBarTextView"
                 android:layout_below="@id/proteinsProgressBarTextView"
-                android:id="@+id/proteinsTargetTextView"/>
+                android:layout_alignStart="@id/proteinsProgressBarTextView"
+                android:textSize="11dp" />
 
         </RelativeLayout>
 
@@ -223,15 +223,14 @@
             <RelativeLayout
                 android:id="@+id/mealsRelativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <RelativeLayout
                     android:id="@+id/breakfastRelativeLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
 
                     <TextView
                         android:id="@+id/breakfastTextView"

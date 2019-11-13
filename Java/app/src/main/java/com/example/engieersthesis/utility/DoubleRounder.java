@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 
 public class DoubleRounder {
     public static double roundDouble(double valueToRound, int decimalPlaces) {
-        if(decimalPlaces < 0)
+        if (decimalPlaces < 0)
             throw new IllegalArgumentException("decimalPlaces must be greater than 0!");
 
         BigDecimal bd = BigDecimal.valueOf(valueToRound);

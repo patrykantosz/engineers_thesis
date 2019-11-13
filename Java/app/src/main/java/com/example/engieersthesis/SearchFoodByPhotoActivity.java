@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,17 +38,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SearchFoodByPhotoActivity extends AppCompatActivity {
+    IResult mResultCallback = null;
     private String currentPhotoPath;
     private String[] labelsFromFirebaseArray;
     private List<String> labelsList;
-
     private Button goBackToMainActivityButton;
     private ListView labelsListView;
     private ListView resultsListView;
     private String mealName;
     private String mealDate;
-
-    IResult mResultCallback = null;
     private VolleyService volleyService;
 
 
@@ -69,7 +66,7 @@ public class SearchFoodByPhotoActivity extends AppCompatActivity {
 
         if (!currentPhotoPath.isEmpty())
             labelImageWithGoogleFirebase();
-            //fillLabelListView();
+        //fillLabelListView();
 
         goBackToMainActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,10 +122,10 @@ public class SearchFoodByPhotoActivity extends AppCompatActivity {
         if (imageFile.exists()) {
             Bitmap imageBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
             FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(imageBitmap);
-             FirebaseVisionCloudImageLabelerOptions options =
-     new FirebaseVisionCloudImageLabelerOptions.Builder()
-         .setConfidenceThreshold(0.4f)
-         .build();
+            FirebaseVisionCloudImageLabelerOptions options =
+                    new FirebaseVisionCloudImageLabelerOptions.Builder()
+                            .setConfidenceThreshold(0.4f)
+                            .build();
 
 
             FirebaseVisionImageLabeler labeler = FirebaseVision.getInstance().getCloudImageLabeler(options);
@@ -137,17 +134,16 @@ public class SearchFoodByPhotoActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(List<FirebaseVisionImageLabel> firebaseVisionImageLabels) {
                             labelsList = new ArrayList<>();
-                            for (FirebaseVisionImageLabel label: firebaseVisionImageLabels) {
+                            for (FirebaseVisionImageLabel label : firebaseVisionImageLabels) {
                                 String text = label.getText();
                                 String entityId = label.getEntityId();
                                 float confidence = label.getConfidence();
                                 Log.d("LABEL", text + " " + confidence);
-                                if(Arrays.asList(Consts.FRIUTS_AND_VEGIES_ENG).contains(text) || Arrays.asList(Consts.FRIUTS_AND_VEGIES_FIRST_UPPER_ENG).contains(text))
-                                {
+                                if (Arrays.asList(Consts.FRIUTS_AND_VEGIES_ENG).contains(text) || Arrays.asList(Consts.FRIUTS_AND_VEGIES_FIRST_UPPER_ENG).contains(text)) {
                                     labelsList.add(text);
                                 }
                             }
-                            if(labelsList.size() > 0) {
+                            if (labelsList.size() > 0) {
                                 labelsFromFirebaseArray = new String[labelsList.size()];
                                 labelsFromFirebaseArray = labelsList.toArray(labelsFromFirebaseArray);
                                 fillLabelListView();
@@ -180,7 +176,6 @@ public class SearchFoodByPhotoActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Object listitem = adapterView.getItemAtPosition(position);
                 if (listitem != null) {
-                    Toast.makeText(SearchFoodByPhotoActivity.this, listitem.toString(), Toast.LENGTH_SHORT).show();
                     searchProductInDatabase(listitem.toString());
                 }
             }
@@ -217,9 +212,9 @@ public class SearchFoodByPhotoActivity extends AppCompatActivity {
         return "";
     }
 
-    public boolean containsCaseInsensitive(String labelToCheck){
-        for (String string : Consts.FRIUTS_AND_VEGIES_ENG){
-            if (string.equalsIgnoreCase(labelToCheck)){
+    public boolean containsCaseInsensitive(String labelToCheck) {
+        for (String string : Consts.FRIUTS_AND_VEGIES_ENG) {
+            if (string.equalsIgnoreCase(labelToCheck)) {
                 return true;
             }
         }

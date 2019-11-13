@@ -1,7 +1,5 @@
 package com.example.engieersthesis;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.VolleyError;
 import com.example.engieersthesis.Interfaces.IResult;
@@ -144,8 +144,8 @@ public class NutritionsTargetActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    calculateEnergyValue();
-                    setEnergyValueToTextView();
+                calculateEnergyValue();
+                setEnergyValueToTextView();
             }
 
             @Override
@@ -162,8 +162,8 @@ public class NutritionsTargetActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    calculateEnergyValue();
-                    setEnergyValueToTextView();
+                calculateEnergyValue();
+                setEnergyValueToTextView();
             }
 
             @Override
@@ -180,8 +180,8 @@ public class NutritionsTargetActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    calculateEnergyValue();
-                    setEnergyValueToTextView();
+                calculateEnergyValue();
+                setEnergyValueToTextView();
             }
 
             @Override
@@ -204,15 +204,15 @@ public class NutritionsTargetActivity extends AppCompatActivity {
     }
 
     private void calculateEnergyValue() {
-        if(fatsTargetEditView.getText().toString().isEmpty())
+        if (fatsTargetEditView.getText().toString().isEmpty())
             energyValueFromFats = 0;
         else
             calculateEnergyFromFats();
-        if(carboTargetEditView.getText().toString().isEmpty())
+        if (carboTargetEditView.getText().toString().isEmpty())
             energyValueFromCarbos = 0;
         else
             calculateEnergyFromCarbos();
-        if(proteinsTargetEditView.getText().toString().isEmpty())
+        if (proteinsTargetEditView.getText().toString().isEmpty())
             energyValueFromProteins = 0;
         else
             calculateEnergyFromProteins();
@@ -242,7 +242,7 @@ public class NutritionsTargetActivity extends AppCompatActivity {
         return isEmpty;
     }
 
-    private void redBordersAroundEmptyEditText(EditText emptyEditText){
+    private void redBordersAroundEmptyEditText(EditText emptyEditText) {
         emptyEditText.setBackgroundResource(R.drawable.error_edit_text);
         Toast.makeText(NutritionsTargetActivity.this, Consts.ADD_NEW_FOOD_EMPTY_FIELDS_MSG_ENG, Toast.LENGTH_SHORT).show();
     }

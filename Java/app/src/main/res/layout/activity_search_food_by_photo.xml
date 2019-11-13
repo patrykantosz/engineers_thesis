@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,46 +29,47 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/actionBarLayout">
+
         <TextView
+            android:id="@+id/infoTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:text="Below is list of objects recognized on the photo. Please choose which you want to add."
-            android:textSize="20dp"
-            android:id="@+id/infoTextView"/>
+            android:textSize="20dp" />
 
         <ListView
+            android:id="@+id/labelsListView"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_below="@id/infoTextView"
-            android:background="@drawable/normal_edit_text"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/labelsListView"/>
+            android:background="@drawable/normal_edit_text" />
 
         <TextView
+            android:id="@+id/infoChosenTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_marginEnd="10dp"
+            android:layout_below="@id/labelsListView"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:text="Findings in database for chosen object:"
-            android:layout_below="@id/labelsListView"
-            android:id="@+id/infoChosenTextView"/>
+            android:textSize="20dp" />
 
         <ListView
+            android:id="@+id/resultsListView"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_below="@id/infoChosenTextView"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/normal_edit_text"
-            android:id="@+id/resultsListView"/>
+            android:background="@drawable/normal_edit_text" />
     </RelativeLayout>
 
 </RelativeLayout>

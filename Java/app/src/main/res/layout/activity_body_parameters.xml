@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,10 +24,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="@string/body_parameters_string"
             android:textSize="25dp"
-            android:layout_centerInParent="true"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/saveNewParameters"
@@ -42,11 +41,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_below="@id/actionBarLayout"
+        android:id="@+id/mainBodyParametersLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
-        android:id="@+id/mainBodyParametersLayout">
+        android:layout_below="@id/actionBarLayout"
+        android:layout_marginTop="25dp">
 
         <RelativeLayout
             android:id="@+id/bodyWeightLayout"
@@ -59,8 +58,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="@string/string_weight"
                 android:layout_marginTop="7dp"
+                android:text="@string/string_weight"
                 android:textSize="25dp" />
 
             <EditText
@@ -70,18 +69,18 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="230dp"
-                android:textSize="22dp"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textSize="22dp" />
 
             <TextView
+                android:id="@+id/massUnitTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="175dp"
-                android:textSize="25dp"
                 android:layout_marginTop="7dp"
-                android:id="@+id/massUnitTextView"
-                android:text="@string/string_kg"/>
+                android:layout_marginEnd="175dp"
+                android:text="@string/string_kg"
+                android:textSize="25dp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -89,16 +88,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/bodyWeightLayout"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/bodyHegihtTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="@string/string_height"
                 android:layout_marginTop="7dp"
+                android:text="@string/string_height"
                 android:textSize="25dp" />
 
             <EditText
@@ -108,18 +107,18 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="230dp"
-                android:textSize="22dp"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textSize="22dp" />
 
             <TextView
+                android:id="@+id/heightUnitTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="175dp"
-                android:textSize="25dp"
                 android:layout_marginTop="7dp"
-                android:id="@+id/heightUnitTextView"
-                android:text="@string/string_cm"/>
+                android:layout_marginEnd="175dp"
+                android:text="@string/string_cm"
+                android:textSize="25dp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -127,16 +126,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/bodyHeightLayout"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/bmiTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="@string/string_bmi"
                 android:layout_marginTop="7dp"
+                android:text="@string/string_bmi"
                 android:textSize="25dp" />
 
             <TextView
@@ -145,10 +144,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="50dp"
-                android:layout_marginEnd="230dp"
                 android:layout_marginTop="7dp"
+                android:layout_marginEnd="230dp"
                 android:textSize="25dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -159,19 +158,19 @@
             android:layout_marginTop="50dp">
 
             <TextView
+                android:id="@+id/bmiTableNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
-                android:text="Zakresy wartości BMI:"
-                android:id="@+id/bmiTableNameTextView"/>
+                android:text="BMI value table:"
+                android:textSize="24dp" />
 
             <TextView
+                android:id="@+id/wyglodzenie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/bmiTableNameTextView"
-                android:textSize="22dp"
-                android:text="Wygłodzenie"
-                android:id="@+id/wyglodzenie"/>
+                android:text="Morbidly underweight"
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -186,12 +185,12 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/wychudzenie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/wyglodzenie"
-                android:textSize="22dp"
-                android:text="Wychudzenie"
-                android:id="@+id/wychudzenie"/>
+                android:text="Severely underweight"
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -199,18 +198,18 @@
                 android:layout_below="@id/wyglodzenie"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="60dp"
-                android:textSize="22dp"
                 android:text="16.0 - 16.99"
-                android:textStyle="bold"
-                android:textColor="#5470DF"/>
+                android:textColor="#5470DF"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/niedowaga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/wychudzenie"
-                android:textSize="22dp"
-                android:text="Niedowaga"
-                android:id="@+id/niedowaga"/>
+                android:text="Underweight"
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -218,18 +217,18 @@
                 android:layout_below="@id/wychudzenie"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="60dp"
-                android:textSize="22dp"
                 android:text="17.0 - 18.49"
-                android:textStyle="bold"
-                android:textColor="#8CC78C"/>
+                android:textColor="#8CC78C"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/jestOk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/niedowaga"
-                android:textSize="22dp"
-                android:text="Pożądana masa ciała"
-                android:id="@+id/jestOk"/>
+                android:text="Normal"
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -237,18 +236,18 @@
                 android:layout_below="@id/niedowaga"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="60dp"
-                android:textSize="22dp"
                 android:text="18.5 - 24.99"
-                android:textStyle="bold"
-                android:textColor="#08E708"/>
+                android:textColor="#08E708"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/nadwaga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/jestOk"
-                android:textSize="22dp"
-                android:text="Nadwaga"
-                android:id="@+id/nadwaga"/>
+                android:text="Overweight"
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -256,18 +255,18 @@
                 android:layout_below="@id/jestOk"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="60dp"
-                android:textSize="22dp"
                 android:text="25.0 - 29.99"
-                android:textStyle="bold"
-                android:textColor="#D6BC7F"/>
+                android:textColor="#D6BC7F"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/otyloscI"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/nadwaga"
-                android:textSize="22dp"
-                android:text="Otyłość"
-                android:id="@+id/otyloscI"/>
+                android:text="Obese"
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -275,18 +274,18 @@
                 android:layout_below="@id/nadwaga"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="60dp"
-                android:textSize="22dp"
                 android:text="30.0 - 34.99"
-                android:textStyle="bold"
-                android:textColor="#FFB604"/>
+                android:textColor="#FFB604"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/otyloscII"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/otyloscI"
-                android:textSize="22dp"
-                android:text="Duża otyłość"
-                android:id="@+id/otyloscII"/>
+                android:text="Severely obese"
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -294,18 +293,18 @@
                 android:layout_below="@id/otyloscI"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="60dp"
-                android:textSize="22dp"
                 android:text="35.0 - 39.99"
-                android:textStyle="bold"
-                android:textColor="#E91609"/>
+                android:textColor="#E91609"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/otyloscIII"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/otyloscII"
-                android:textSize="22dp"
-                android:text="Chorobliwa otyłość"
-                android:id="@+id/otyloscIII"/>
+                android:text="Very severely obese"
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="wrap_content"
