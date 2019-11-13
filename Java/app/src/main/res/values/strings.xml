@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">EngieersThesis</string>
     <string name="login">Login</string>
-    <string name="password">Hasło</string>
-    <string name="log_in">Zaloguj się</string>
-    <string name="register_account">Załóż konto</string>
-    <string name="search_product">Wpisz nazwę produktu</string>
-    <string name="add_new_product">Dodaj nowy produkt</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="register_account">Create account</string>
+    <string name="search_product">Enter a name</string>
+    <string name="add_new_product">Add new product</string>
     <string name="email">E-mail</string>
     <string name="title_activity_user_main_screen">UserMainScreenActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -14,26 +14,40 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="log_out">Wyloguj</string>
+    <string name="log_out">Log out</string>
+    <string name="parameters_string">Body parameters</string>
+    <string name="target_string">Nutrition target</string>
 
-    <string name="breakfast">Śniadanie</string>
-    <string name="brunch">Drugie śniadanie</string>
-    <string name="dinner">Obiad</string>
-    <string name="supper">Kolacja</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="brunch">Brunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="supper">Supper</string>
 
-    <string name="product_name">Nazwa produktu</string>
-    <string name="product_brand">Producent</string>
-    <string name="product_energy_value">Wartość odżywcza</string>
-    <string name="product_fats">Tłuszcze</string>
-    <string name="product_saturated_fats">Nasycone</string>
-    <string name="product_carbohydrates">Węglowodany</string>
-    <string name="product_sugars">Cukry</string>
-    <string name="product_proteins">Białko</string>
-    <string name="product_salt">Sól</string>
+    <string name="product_name">Product name</string>
+    <string name="product_brand">Brand</string>
+    <string name="product_energy_value">Energy value</string>
+    <string name="product_fats">Fats</string>
+    <string name="product_saturated_fats">Saturated</string>
+    <string name="product_carbohydrates">Carbohydrates</string>
+    <string name="product_sugars">Sugars</string>
+    <string name="product_proteins">Proteins</string>
+    <string name="product_salt">Salt</string>
+    <string name="calories_string">Calories</string>
+    <string name="short_carbo_string">Carbo.</string>
+
+    <string name="string_height">Height</string>
+    <string name="string_weight">Weight</string>
+    <string name="string_bmi">BMI</string>
+    <string name="body_parameters_string">Body parameters</string>
+    <string name="nutritions_target_string">Nutrition target</string>
+
+    <string name="less_than_16">\u003C 16</string>
 
     <string name="string_kcal">kcal</string>
-    <string name="string_product_weight">Wielkość porcji</string>
+    <string name="string_product_weight">Product weight</string>
     <string name="string_gram_mass_unit">g</string>
+    <string name="string_kg">kg</string>
+    <string name="string_cm">cm</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

@@ -1,7 +1,16 @@
 package com.example.engieersthesis;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -9,11 +18,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.android.volley.VolleyError;
 import com.example.engieersthesis.Interfaces.IResult;
@@ -24,7 +36,11 @@ import com.example.engieersthesis.utility.JSONUtilities;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AddFoodProductActivity extends AppCompatActivity {
 
@@ -32,10 +48,14 @@ public class AddFoodProductActivity extends AppCompatActivity {
     private TextView mealNameTextView;
     private EditText foodSearchEditText;
     private VolleyService volleyService;
+    private ImageButton photoFoodSearchButton;
     private Button addNewFoodProductButton;
     private ListView listView;
     private String mealName;
     private String mealDate;
+    private String currentPhotoPath;
+    static final int REQUEST_TAKE_PHOTO = 1996;
+    private static final int MY_CAMERA_PERMISSION_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +69,7 @@ public class AddFoodProductActivity extends AppCompatActivity {
         foodSearchEditText = findViewById(R.id.foodSearchEditText);
         addNewFoodProductButton = findViewById(R.id.addNewFoodProductButton);
         listView = findViewById(R.id.foodProductsListView);
+        photoFoodSearchButton = findViewById(R.id.photoFoodSearchButton);
 
         mealNameTextView.setText(mealName);
 
@@ -81,7 +102,25 @@ public class AddFoodProductActivity extends AppCompatActivity {
             }
         });
 
+        photoFoodSearchButton.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                //dispatchTakePictureIntent();
+                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+                {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
+                }
+                else
+                {
+                    dispatchTakePictureIntent();
+                }
+            }
+        });
+
     }
+
+
 
     private void searchProductInDatabase(String foodToSearch) {
         String urlWithFoodToSearchAsQueryParam = Consts.API_LIST_ALL_FOOD_PRODUCTS_ENDPOINT +
@@ -89,6 +128,57 @@ public class AddFoodProductActivity extends AppCompatActivity {
         Log.d("URL: ", urlWithFoodToSearchAsQueryParam);
 
         volleyService.getDataVolleyRequest(Consts.GET_METHOD, urlWithFoodToSearchAsQueryParam);
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = createImagefile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (photoFile != null) {
+                Uri photoUri = FileProvider.getUriForFile(this,
+                        "com.example.android.fileproviderforthesis",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
+            File imageFile = new File(currentPhotoPath);
+            if(imageFile.exists()) {
+                Intent intent = new Intent(AddFoodProductActivity.this, SearchFoodByPhotoActivity.class);
+                intent.putExtra(Consts.PHOTO_PATH, currentPhotoPath);
+                intent.putExtra(Consts.MEAL_TYPE_INTENT_EXTRA, mealName);
+                intent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, mealDate);
+                startActivity(intent);
+            }
+        }
+    }
+
+    private void runGoogleFirebaseLabeling(Bitmap imageBitmap) {
+
+    }
+
+    private File createImagefile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,
+                ".jpg",
+                storageDir
+        );
+
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
     void initVolleyCallback() {
@@ -132,13 +222,13 @@ public class AddFoodProductActivity extends AppCompatActivity {
 
     private String getMealType() {
         switch (mealName) {
-            case Consts.BREAKFAST_PL:
+            case Consts.BREAKFAST_EN:
                 return Consts.BREAKFAST_EN;
-            case Consts.BRUNCH_PL:
+            case Consts.BRUNCH_EN:
                 return Consts.BRUNCH_EN;
-            case Consts.DINNER_PL:
+            case Consts.DINNER_EN:
                 return Consts.DINNER_EN;
-            case Consts.SUPPER_PL:
+            case Consts.SUPPER_EN:
                 return Consts.SUPPER_EN;
         }
 

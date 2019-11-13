@@ -136,6 +136,6 @@ public class LogInActivity extends AppCompatActivity {
         passwordEditText.setEnabled(true);
         loginEditText.setText("");
         passwordEditText.setText("");
-        Toast.makeText(LogInActivity.this, Consts.WRONG_CREDENTIALS_MSG_PL, Toast.LENGTH_SHORT).show();
+        Toast.makeText(LogInActivity.this, Consts.WRONG_CREDENTIALS_MSG_ENG, Toast.LENGTH_SHORT).show();
     }
 }

@@ -19,7 +19,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="10dp"
             android:background="@drawable/oval_button"
-            android:text="Powrót"
+            android:text="Back"
             android:textColor="#FFFFFF" />
 
         <Button
@@ -29,7 +29,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:background="@drawable/oval_button"
-            android:text="Zapisz"
+            android:text="Save"
             android:textColor="#FFFFFF" />
     </RelativeLayout>
 
@@ -50,7 +50,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/first"
+                android:id="@+id/caloriesProgressBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -72,10 +72,10 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/second"
+                android:id="@+id/carbosProgressBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/first"
+                android:layout_below="@id/caloriesProgressBar"
                 android:orientation="horizontal">
 
                 <TextView
@@ -99,7 +99,7 @@
                 android:id="@+id/third"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/second"
+                android:layout_below="@id/carbosProgressBar"
                 android:orientation="horizontal">
 
                 <TextView

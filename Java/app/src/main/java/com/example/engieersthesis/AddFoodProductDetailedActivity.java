@@ -99,7 +99,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
                     Log.d("ResponseObject", response.toString());
-                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_DELETE_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_DELETE_SUCCESS_MSG_ENG, Toast.LENGTH_SHORT).show();
                     volleyService.setmResultCallback(mResultCallback);
                     goBackToUserMainActivity();
                 }
@@ -107,7 +107,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
                 @Override
                 public void notifyError(String requestType, VolleyError error) {
                     Log.d("ErrorResponse", error.toString());
-                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_DELETE_FAILURE_MSG_PL, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_DELETE_FAILURE_MSG_ENG, Toast.LENGTH_SHORT).show();
                     volleyService.setmResultCallback(mResultCallback);
                 }
             };
@@ -181,7 +181,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
                 @Override
                 public void notifySuccess(String requestType, JSONObject response) {
                     Log.d("PATCHResponseObject", response.toString());
-                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_UPDATE_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_UPDATE_SUCCESS_MSG_ENG, Toast.LENGTH_SHORT).show();
                     volleyService.setmResultCallback(mResultCallback);
                     goBackToUserMainActivity();
                 }
@@ -189,7 +189,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
                 @Override
                 public void notifyError(String requestType, VolleyError error) {
                     Log.d("ErrorResponse", error.toString());
-                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_UPDATE_FAILURE_MSG_PL, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_UPDATE_FAILURE_MSG_ENG, Toast.LENGTH_SHORT).show();
                     volleyService.setmResultCallback(mResultCallback);
 
                 }
@@ -197,7 +197,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
             volleyService.setmResultCallback(updateResultCallback);
             volleyService.patchDataVolleyRequest(Consts.PATCH_METHOD, Consts.API_UPDATE_FOOD_WEIGHT_ENDPOINT, jsonBuilder.getJson());
         } else {
-            Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_UPDATE_SUCCESS_MSG_PL, Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddFoodProductDetailedActivity.this, Consts.FOOD_PRODUCT_UPDATE_SUCCESS_MSG_ENG, Toast.LENGTH_SHORT).show();
             goBackToUserMainActivity();
         }
 
@@ -217,7 +217,10 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("ResponseJSONObjectADD", response.toString());
-                goBackToUserMainActivity();
+                if(getIntent().getBooleanExtra(Consts.MULTIPLE_ADD, false))
+                    finish();
+                else
+                    goBackToUserMainActivity();
             }
 
             @Override
@@ -313,6 +316,7 @@ public class AddFoodProductDetailedActivity extends AppCompatActivity {
     private void goBackToUserMainActivity() {
         Intent userMainActivityIntent = new Intent(AddFoodProductDetailedActivity.this, UserMainScreenActivity.class);
         userMainActivityIntent.putExtra(Consts.MEAL_DATE_INTENT_EXTRA, mealDate);
+        userMainActivityIntent.putExtra("REFRESH", true);
         userMainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(userMainActivityIntent);
     }

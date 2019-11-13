@@ -52,10 +52,173 @@
 
         </RelativeLayout>
 
+
+        <RelativeLayout
+            android:id="@+id/dolna"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/calendarActionBar">
+
+            <ProgressBar
+                android:id="@+id/caloriesProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:max="100"
+                android:progress="100" />
+
+            <TextView
+                android:id="@+id/caloriesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/caloriesProgressBar"
+                android:layout_alignStart="@+id/caloriesProgressBar"
+                android:text="@string/calories_string"
+                android:textSize="11dp" />
+
+            <TextView
+                android:id="@+id/dailyCaloriesTextView"
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/caloriesProgressBar"
+                android:layout_alignEnd="@+id/caloriesProgressBar"
+                android:layout_toEndOf="@+id/caloriesTextView"
+                android:gravity="end"
+                android:text=""
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/targetCaloriesTextView"
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/caloriesTextView"
+                android:layout_alignStart="@id/caloriesTextView"
+                android:textSize="11dp" />
+
+            <ProgressBar
+                android:id="@+id/carbosProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/fatsProgressBar"
+                android:max="100"
+                android:progress="100" />
+
+            <TextView
+                android:id="@+id/shortCarbosTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/carbosProgressBar"
+                android:layout_alignStart="@id/carbosProgressBar"
+                android:text="@string/short_carbo_string"
+                android:textSize="11dp" />
+
+            <TextView
+                android:id="@+id/dailyCarbosTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/carbosProgressBar"
+                android:layout_alignEnd="@id/carbosProgressBar"
+                android:layout_toEndOf="@id/shortCarbosTextView"
+                android:gravity="end"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/targetCarbosTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/shortCarbosTextView"
+                android:layout_alignStart="@id/shortCarbosTextView"
+                android:layout_alignEnd="@id/dailyCarbosTextView"
+                android:textSize="11dp" />
+
+            <ProgressBar
+                android:id="@+id/fatsProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/proteinsProgressBar"
+                android:max="100"
+                android:progress="100" />
+
+            <TextView
+                android:id="@+id/fatsNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fatsProgressBar"
+                android:layout_alignStart="@+id/fatsProgressBar"
+                android:text="@string/product_fats"
+                android:textSize="11dp" />
+
+            <TextView
+                android:id="@+id/dailyFatsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fatsProgressBar"
+                android:layout_alignEnd="@id/fatsProgressBar"
+                android:layout_toEndOf="@id/fatsNameTextView"
+                android:gravity="end"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fatsTargetTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fatsNameTextView"
+                android:layout_alignStart="@id/fatsNameTextView"
+                android:layout_alignEnd="@id/dailyFatsTextView"
+                android:textSize="11dp" />
+
+            <ProgressBar
+                android:id="@+id/proteinsProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/caloriesProgressBar"
+                android:max="100"
+                android:progress="100" />
+
+            <TextView
+                android:id="@+id/proteinsProgressBarTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/proteinsProgressBar"
+                android:layout_alignStart="@+id/proteinsProgressBar"
+                android:text="@string/product_proteins"
+                android:textSize="11dp" />
+
+            <TextView
+                android:id="@+id/dailyProteinsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/proteinsProgressBar"
+                android:layout_alignEnd="@id/proteinsProgressBar"
+                android:layout_toEndOf="@id/proteinsProgressBarTextView"
+                android:gravity="end"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/proteinsTargetTextView"
+                android:layout_width="87dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/proteinsProgressBarTextView"
+                android:layout_alignStart="@id/proteinsProgressBarTextView"
+                android:textSize="11dp" />
+
+        </RelativeLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/calendarActionBar">
+            android:layout_below="@id/dolna">
 
             <RelativeLayout
                 android:id="@+id/mealsRelativeLayout"
@@ -66,6 +229,7 @@
                     android:id="@+id/breakfastRelativeLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp">
 
                     <TextView
@@ -95,6 +259,12 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="20dp"></com.example.engieersthesis.utility.NonScrollListView>
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#c0c0c0" />
 
                 <View
                     android:layout_width="match_parent"
@@ -220,7 +390,6 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/supperTextView"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
                         android:layout_marginRight="20dp"></com.example.engieersthesis.utility.NonScrollListView>
 
                 </RelativeLayout>
